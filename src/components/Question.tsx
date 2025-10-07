@@ -15,6 +15,7 @@ interface QuestionProps {
   title: string;
   options: QuestionOption[];
   onAnswer: (optionId: number) => void;
+  onBack?: () => void;
   globalFeedback?: string;
 }
 
@@ -24,6 +25,7 @@ const Question = ({
   title, 
   options, 
   onAnswer,
+  onBack,
   globalFeedback 
 }: QuestionProps) => {
   const [showPopup, setShowPopup] = useState(false);
@@ -50,6 +52,11 @@ const Question = ({
         {/* Progress */}
         <ProgressDots total={totalQuestions} current={questionNumber} />
 
+        {/* Question counter */}
+        <p className="text-sm text-muted-foreground text-center mb-2">
+          Pergunta {questionNumber} de {totalQuestions}
+        </p>
+
         {/* Question title */}
         <h2 className="text-[22px] font-bold text-foreground mb-8 text-center leading-tight">
           {title}
@@ -68,6 +75,16 @@ const Question = ({
             </QuizButton>
           ))}
         </div>
+
+        {/* Back button */}
+        {onBack && questionNumber > 1 && (
+          <button
+            onClick={onBack}
+            className="gtm-id-button mt-6 text-sm text-muted-foreground hover:text-foreground transition-colors text-center"
+          >
+            ← Voltar
+          </button>
+        )}
       </div>
 
       {/* Cloud popup feedback */}

@@ -1,32 +1,26 @@
 import { useEffect, useState } from "react";
-import { Moon, Sparkles } from "lucide-react";
+import { Moon, Sparkles, X } from "lucide-react";
 
 interface CloudPopupProps {
   message: string;
   onClose: () => void;
-  autoCloseDuration?: number;
 }
 
-const CloudPopup = ({ message, onClose, autoCloseDuration = 3000 }: CloudPopupProps) => {
+const CloudPopup = ({ message, onClose }: CloudPopupProps) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
-    const timer = setTimeout(() => {
-      setIsVisible(false);
-      setTimeout(onClose, 400);
-    }, autoCloseDuration);
+  }, []);
 
-    return () => clearTimeout(timer);
-  }, [autoCloseDuration, onClose]);
+  const handleClose = () => {
+    setIsVisible(false);
+    setTimeout(onClose, 400);
+  };
 
   return (
     <div 
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/20 backdrop-blur-sm"
-      onClick={() => {
-        setIsVisible(false);
-        setTimeout(onClose, 400);
-      }}
     >
       <div 
         className={`
@@ -35,8 +29,16 @@ const CloudPopup = ({ message, onClose, autoCloseDuration = 3000 }: CloudPopupPr
           transition-all duration-400
           ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}
         `}
-        onClick={(e) => e.stopPropagation()}
       >
+        {/* Close button */}
+        <button
+          onClick={handleClose}
+          className="gtm-id-button absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-[hsl(var(--cloud-text))]/10 hover:bg-[hsl(var(--cloud-text))]/20 transition-colors"
+          aria-label="Fechar"
+        >
+          <X className="w-4 h-4 text-[hsl(var(--cloud-text))]" />
+        </button>
+
         {/* Icon decoration */}
         <div className="flex justify-center mb-3">
           {Math.random() > 0.5 ? (

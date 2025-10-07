@@ -18,13 +18,20 @@ const Index = () => {
   };
 
   const handleAnswer = (optionId: number) => {
-    const newAnswers = [...answers, optionId];
+    const newAnswers = [...answers];
+    newAnswers[currentQuestionIndex] = optionId;
     setAnswers(newAnswers);
 
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
       setCurrentScreen("results");
+    }
+  };
+
+  const handleBack = () => {
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex(currentQuestionIndex - 1);
     }
   };
 
@@ -45,6 +52,7 @@ const Index = () => {
           title={questions[currentQuestionIndex].title}
           options={questions[currentQuestionIndex].options}
           onAnswer={handleAnswer}
+          onBack={handleBack}
           globalFeedback={questions[currentQuestionIndex].globalFeedback}
         />
       )}

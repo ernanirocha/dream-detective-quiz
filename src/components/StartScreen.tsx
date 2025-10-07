@@ -39,6 +39,9 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
           Sua mente não desliga à noite?
         </h1>
 
+        {/* Ad Inserter Block */}
+        <div className="text-center mb-4" dangerouslySetInnerHTML={{ __html: '[adinserter block="15"]' }} />
+
         {/* Subtitle */}
         <p className="text-[16px] text-muted-foreground text-center mb-12 leading-relaxed">
           Descubra o que está sabotando seu sono — e a <span className="text-primary font-semibold">solução natural</span> que combina com você.

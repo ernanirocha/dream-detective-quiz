@@ -45,6 +45,9 @@ const Results = ({ profile }: ResultsProps) => {
           {profile.headline}
         </h1>
 
+        {/* Ad Inserter Block */}
+        <div className="text-center mb-4" dangerouslySetInnerHTML={{ __html: '[adinserter block="15"]' }} />
+
         {/* Description */}
         <p className="text-[16px] text-muted-foreground text-center mb-8 leading-relaxed">
           {profile.description}
@@ -53,7 +56,7 @@ const Results = ({ profile }: ResultsProps) => {
         {/* Articles */}
         <div className="space-y-3 mb-8">
           <h3 className="text-sm font-semibold text-primary uppercase tracking-wide text-center mb-4">
-            Artigos recomendados para você
+            Dicas personalizadas para sua noite de hoje
           </h3>
           {profile.articles.map((article, index) => (
             <QuizButton
@@ -77,7 +80,7 @@ const Results = ({ profile }: ResultsProps) => {
         {/* Restart option */}
         <button
           onClick={() => window.location.reload()}
-          className="mt-6 text-sm text-muted-foreground hover:text-foreground transition-colors text-center"
+          className="gtm-id-button mt-6 text-sm text-muted-foreground hover:text-foreground transition-colors text-center"
         >
           🔄 Refazer o quiz
         </button>
