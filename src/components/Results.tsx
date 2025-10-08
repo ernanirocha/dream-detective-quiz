@@ -2,6 +2,12 @@ import { Brain, Heart, Moon } from "lucide-react";
 import QuizButton from "./QuizButton";
 import AdSenseAd from "./AdSenseAd";
 
+declare global {
+  interface Window {
+    dataLayer: any[];
+  }
+}
+
 interface Article {
   title: string;
   url: string;
@@ -28,7 +34,15 @@ const Results = ({ profile }: ResultsProps) => {
   }[profile.icon];
 
   const handleArticleClick = (url: string) => {
-    window.open(`${url}?utm_source=quiz&utm_medium=resultado&utm_campaign=sono_ansiedade`, '_blank', 'noopener');
+    // GTM tracking
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        'event': 'btn_click',
+        '_event': 'btn_click'
+      });
+    }
+    // Abre na mesma janela
+    window.location.href = `${url}?utm_source=quiz&utm_medium=resultado&utm_campaign=sono_ansiedade`;
   };
 
   return (
