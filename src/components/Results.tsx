@@ -1,5 +1,6 @@
 import { Brain, Heart, Moon } from "lucide-react";
 import QuizButton from "./QuizButton";
+import AdSenseAd from "./AdSenseAd";
 
 interface Article {
   title: string;
@@ -45,8 +46,12 @@ const Results = ({ profile }: ResultsProps) => {
           {profile.headline}
         </h1>
 
-        {/* Ad Inserter Block */}
-        <div className="text-center mb-4" dangerouslySetInnerHTML={{ __html: '[adinserter block="15"]' }} />
+        {/* Anúncio AdSense no Results */}
+        <AdSenseAd
+          client="ca-pub-1170863474773514"
+          slot="8117047174"
+          // adtest="on"
+        />
 
         {/* Description */}
         <p className="text-[16px] text-muted-foreground text-center mb-8 leading-relaxed">

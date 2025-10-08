@@ -1,5 +1,6 @@
 import { Moon, Stars } from "lucide-react";
 import QuizButton from "./QuizButton";
+import AdSenseAd from "./AdSenseAd";
 
 interface StartScreenProps {
   onStart: () => void;
@@ -39,8 +40,12 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
           Sua mente não desliga à noite?
         </h1>
 
-        {/* Ad Inserter Block */}
-        <div className="text-center mb-4" dangerouslySetInnerHTML={{ __html: '[adinserter block="15"]' }} />
+        {/* Anúncio AdSense no Start */}
+        <AdSenseAd
+          client="ca-pub-1170863474773514"
+          slot="8117047174"
+          // adtest="on"  // habilite para testar layout sem monetizar
+        />
 
         {/* Subtitle */}
         <p className="text-[16px] text-muted-foreground text-center mb-12 leading-relaxed">
