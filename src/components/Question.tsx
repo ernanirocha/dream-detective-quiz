@@ -2,6 +2,7 @@ import { useState } from "react";
 import ProgressDots from "./ProgressDots";
 import QuizButton from "./QuizButton";
 import CloudPopup from "./CloudPopup";
+import AdSenseAd from "./AdSenseAd";
 
 interface QuestionOption {
   id: number;
@@ -49,6 +50,14 @@ const Question = ({
   return (
     <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--night-gradient-start))]/40 to-[hsl(var(--night-gradient-end))]/40 flex flex-col p-6">
       <div className="max-w-md w-full mx-auto flex-1 flex flex-col justify-center animate-slide-up">
+        {/* AdSense na pergunta 2 */}
+        {questionNumber === 2 && (
+          <AdSenseAd
+            client="ca-pub-1170863474773514"
+            slot="8117047174"
+          />
+        )}
+        
         {/* Progress */}
         <ProgressDots total={totalQuestions} current={questionNumber} />
 
