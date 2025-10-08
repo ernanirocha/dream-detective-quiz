@@ -16,15 +16,27 @@ const App = () => (
       <Toaster />
       <Sonner />
       <div className="relative min-h-screen">
-        {/* Background images with low opacity */}
+        {/* Background images - mobile/desktop with screen fill */}
         <div className="fixed inset-0 -z-10">
+          {/* Mobile background */}
           <div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40 md:hidden"
-            style={{ backgroundImage: `url(${bgMobile})` }}
+            className="absolute inset-0 md:hidden opacity-40"
+            style={{ 
+              backgroundImage: `url(${bgMobile})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
           />
+          {/* Desktop background */}
           <div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40 hidden md:block"
-            style={{ backgroundImage: `url(${bgDesktop})` }}
+            className="absolute inset-0 hidden md:block opacity-40"
+            style={{ 
+              backgroundImage: `url(${bgDesktop})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
           />
         </div>
         <BrowserRouter>
