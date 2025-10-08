@@ -49,7 +49,9 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
 
         {/* Subtitle */}
         <p className="text-[16px] text-muted-foreground text-center mb-12 leading-relaxed">
-          Descubra o que está sabotando seu sono — e a <span className="text-primary font-semibold">solução natural</span> que combina com você.
+          Descubra o que está sabotando seu sono e a <span className="text-primary font-semibold">solução natural</span>{" "}
+          que combina com você. Responda abaixo e veja qual plano simples pode ajudar a melhorar suas noites. Sem
+          cadastro, resultado imediato.
         </p>
 
         {/* CTA Button */}
