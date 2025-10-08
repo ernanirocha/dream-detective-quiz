@@ -19,11 +19,11 @@ const App = () => (
         {/* Background images with low opacity */}
         <div className="fixed inset-0 -z-10">
           <div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.08] md:hidden"
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40 md:hidden"
             style={{ backgroundImage: `url(${bgMobile})` }}
           />
           <div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.08] hidden md:block"
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40 hidden md:block"
             style={{ backgroundImage: `url(${bgDesktop})` }}
           />
         </div>
