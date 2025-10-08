@@ -19,14 +19,14 @@ interface QuestionProps {
   globalFeedback?: string;
 }
 
-const Question = ({ 
-  questionNumber, 
-  totalQuestions, 
-  title, 
-  options, 
+const Question = ({
+  questionNumber,
+  totalQuestions,
+  title,
+  options,
   onAnswer,
   onBack,
-  globalFeedback 
+  globalFeedback,
 }: QuestionProps) => {
   const [showPopup, setShowPopup] = useState(false);
   const [currentFeedback, setCurrentFeedback] = useState("");
@@ -58,18 +58,12 @@ const Question = ({
         </p>
 
         {/* Question title */}
-        <h2 className="text-[22px] font-bold text-foreground mb-8 text-center leading-tight">
-          {title}
-        </h2>
+        <h2 className="text-[22px] font-bold text-foreground mb-8 text-center leading-tight">{title}</h2>
 
         {/* Options */}
         <div className="space-y-4">
           {options.map((option) => (
-            <QuizButton
-              key={option.id}
-              variant="option"
-              onClick={() => handleOptionClick(option)}
-            >
+            <QuizButton key={option.id} variant="option" onClick={() => handleOptionClick(option)}>
               <span className="text-primary mr-2 font-bold">{option.id}️⃣</span>
               {option.text}
             </QuizButton>
@@ -88,12 +82,7 @@ const Question = ({
       </div>
 
       {/* Cloud popup feedback */}
-      {showPopup && (
-        <CloudPopup
-          message={currentFeedback}
-          onClose={handlePopupClose}
-        />
-      )}
+      {showPopup && <CloudPopup message={currentFeedback} onClose={handlePopupClose} />}
     </div>
   );
 };
