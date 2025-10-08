@@ -8,7 +8,7 @@ interface StartScreenProps {
 
 const StartScreen = ({ onStart }: StartScreenProps) => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--night-gradient-start))] to-[hsl(var(--night-gradient-end))] flex flex-col items-center justify-center p-6 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--night-gradient-start))]/40 to-[hsl(var(--night-gradient-end))]/40 flex flex-col items-center justify-center p-6 relative overflow-hidden">
       {/* Animated stars background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(20)].map((_, i) => (

@@ -47,7 +47,7 @@ const Question = ({
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--night-gradient-start))] to-[hsl(var(--night-gradient-end))] flex flex-col p-6">
+    <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--night-gradient-start))]/40 to-[hsl(var(--night-gradient-end))]/40 flex flex-col p-6">
       <div className="max-w-md w-full mx-auto flex-1 flex flex-col justify-center animate-slide-up">
         {/* Progress */}
         <ProgressDots total={totalQuestions} current={questionNumber} />
