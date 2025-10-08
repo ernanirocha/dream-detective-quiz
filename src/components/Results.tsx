@@ -37,8 +37,8 @@ const Results = ({ profile }: ResultsProps) => {
     // GTM tracking
     if (window.dataLayer) {
       window.dataLayer.push({
-        'event': 'btn_click',
-        '_event': 'btn_click'
+        event: "btn_click",
+        _event: "btn_click",
       });
     }
     // Abre na mesma janela
@@ -56,21 +56,10 @@ const Results = ({ profile }: ResultsProps) => {
         </div>
 
         {/* Headline */}
-        <h1 className="text-[22px] font-bold text-foreground text-center mb-4 leading-tight">
-          {profile.headline}
-        </h1>
-
-        {/* Anúncio AdSense no Results */}
-        <AdSenseAd
-          client="ca-pub-1170863474773514"
-          slot="8117047174"
-          // adtest="on"
-        />
+        <h1 className="text-[22px] font-bold text-foreground text-center mb-4 leading-tight">{profile.headline}</h1>
 
         {/* Description */}
-        <p className="text-[16px] text-muted-foreground text-center mb-8 leading-relaxed">
-          {profile.description}
-        </p>
+        <p className="text-[16px] text-muted-foreground text-center mb-8 leading-relaxed">{profile.description}</p>
 
         {/* Articles */}
         <div className="space-y-3 mb-8">
@@ -78,21 +67,14 @@ const Results = ({ profile }: ResultsProps) => {
             Dicas personalizadas para sua noite de hoje
           </h3>
           {profile.articles.map((article, index) => (
-            <QuizButton
-              key={index}
-              variant="option"
-              onClick={() => handleArticleClick(article.url)}
-            >
+            <QuizButton key={index} variant="option" onClick={() => handleArticleClick(article.url)}>
               📄 {article.title}
             </QuizButton>
           ))}
         </div>
 
         {/* CTA */}
-        <QuizButton 
-          variant="primary"
-          onClick={() => handleArticleClick(profile.articles[0].url)}
-        >
+        <QuizButton variant="primary" onClick={() => handleArticleClick(profile.articles[0].url)}>
           {profile.cta}
         </QuizButton>
 
