@@ -54,7 +54,7 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
 
         {/* Second paragraph */}
         <p className="text-[16px] text-muted-foreground text-center mb-12 leading-relaxed">
-          Sem cadastro, resultado imediato.
+          Entenda seu nível de ansiedade noturna. Sem criar conta*
         </p>
 
         {/* CTA Button */}
@@ -122,6 +122,19 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
               </div>
             </details>
           </div>
+
+          {/* Disclaimer */}
+          <p className="text-[13px] text-muted-foreground text-center mt-8 leading-relaxed">
+            *Não pedimos email ou telefone para ver o resultado. Se quiser receber dicas e notificações relacionadas,{" "}
+            <a 
+              href="https://cleoloiolatp.com/inscricao" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-primary hover:underline"
+            >
+              inscreva-se aqui
+            </a>
+          </p>
         </div>
       </div>
     </div>
