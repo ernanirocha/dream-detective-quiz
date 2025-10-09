@@ -33,7 +33,7 @@ const CloudPopup = ({ message, onClose }: CloudPopupProps) => {
         {/* Close button */}
         <button
           onClick={handleClose}
-          className="gtm-id-button absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-[hsl(var(--cloud-text))]/10 hover:bg-[hsl(var(--cloud-text))]/20 transition-colors"
+          className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-[hsl(var(--cloud-text))]/10 hover:bg-[hsl(var(--cloud-text))]/20 transition-colors"
           aria-label="Fechar"
         >
           <X className="w-4 h-4 text-[hsl(var(--cloud-text))]" />

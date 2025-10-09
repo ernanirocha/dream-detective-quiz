@@ -1,5 +1,11 @@
 import { ButtonHTMLAttributes, ReactNode } from "react";
 
+declare global {
+  interface Window {
+    dataLayer: any[];
+  }
+}
+
 interface QuizButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   variant?: "primary" | "option";
@@ -15,12 +21,28 @@ const QuizButton = ({ children, variant = "option", gtmId, className = "", ...pr
     option: "bg-secondary text-secondary-foreground hover:bg-secondary/80 hover:border-primary border-2 border-transparent active:scale-[0.98] text-left px-6 py-4"
   };
 
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    // Send gtm-id to dataLayer
+    if (gtmId && window.dataLayer) {
+      window.dataLayer.push({
+        event: 'button_click_id',
+        button_id: gtmId
+      });
+    }
+    
+    // Call original onClick if exists
+    if (props.onClick) {
+      props.onClick(e);
+    }
+  };
+
   return (
     <button 
       type="button"
       role="button"
       className={`${baseStyles} ${variantStyles[variant]} ${className}`}
       {...props}
+      onClick={handleClick}
     >
       <span className="pointer-events-none">
         {children}
