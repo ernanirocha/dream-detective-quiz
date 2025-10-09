@@ -77,6 +77,7 @@ const Question = ({
             <QuizButton
               key={option.id}
               variant="option"
+              gtmId={option.id}
               onClick={() => handleOptionClick(option)}
             >
               <span className="text-primary mr-2 font-bold">{option.id}️⃣</span>

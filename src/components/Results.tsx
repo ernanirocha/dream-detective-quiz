@@ -2,12 +2,6 @@ import { Brain, Heart, Moon } from "lucide-react";
 import QuizButton from "./QuizButton";
 import AdSenseAd from "./AdSenseAd";
 
-declare global {
-  interface Window {
-    dataLayer: any[];
-  }
-}
-
 interface Article {
   title: string;
   url: string;
@@ -34,15 +28,18 @@ const Results = ({ profile }: ResultsProps) => {
   }[profile.icon];
 
   const handleArticleClick = (url: string) => {
-    // GTM tracking
-    if (window.dataLayer) {
-      window.dataLayer.push({
-        event: "btn_click",
-        _event: "btn_click",
-      });
+    // Adiciona UTMs preservando parâmetros existentes
+    const urlObj = new URL(url, window.location.origin);
+    if (!urlObj.searchParams.has('utm_source')) {
+      urlObj.searchParams.set('utm_source', 'quiz');
     }
-    // Abre na mesma janela
-    window.location.href = `${url}?utm_source=quiz&utm_medium=resultado&utm_campaign=sono_ansiedade`;
+    if (!urlObj.searchParams.has('utm_medium')) {
+      urlObj.searchParams.set('utm_medium', 'resultado');
+    }
+    if (!urlObj.searchParams.has('utm_campaign')) {
+      urlObj.searchParams.set('utm_campaign', 'sono_ansiedade');
+    }
+    window.location.href = urlObj.toString();
   };
 
   return (
@@ -69,14 +66,23 @@ const Results = ({ profile }: ResultsProps) => {
             Dicas personalizadas para sua noite de hoje
           </h3>
           {profile.articles.map((article, index) => (
-            <QuizButton key={index} variant="option" onClick={() => handleArticleClick(article.url)}>
+            <QuizButton 
+              key={index} 
+              variant="option" 
+              gtmId={31 + index}
+              onClick={() => handleArticleClick(article.url)}
+            >
               📄 {article.title}
             </QuizButton>
           ))}
         </div>
 
         {/* CTA */}
-        <QuizButton variant="primary" onClick={() => handleArticleClick(profile.articles[0].url)}>
+        <QuizButton 
+          variant="primary" 
+          gtmId={30}
+          onClick={() => handleArticleClick(profile.articles[0].url)}
+        >
           {profile.cta}
         </QuizButton>
 
