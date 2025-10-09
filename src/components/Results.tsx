@@ -93,6 +93,21 @@ const Results = ({ profile }: ResultsProps) => {
         >
           🔄 Refazer o quiz
         </button>
+
+        {/* Disclaimer */}
+        <div className="mt-8 pt-6 border-t border-border/50">
+          <p className="text-xs text-muted-foreground/80 text-center leading-relaxed">
+            *Não pedimos email ou telefone para ver o resultado. Se quiser receber dicas e notificações relacionadas,{" "}
+            <a 
+              href="https://cleoloiolatp.com/inscricao" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-primary hover:underline"
+            >
+              inscreva-se aqui
+            </a>
+          </p>
+        </div>
       </div>
     </div>
   );
