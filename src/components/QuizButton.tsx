@@ -18,10 +18,13 @@ const QuizButton = ({ children, variant = "option", gtmId, className = "", ...pr
   return (
     <button 
       type="button"
+      role="button"
       className={`${baseStyles} ${variantStyles[variant]} ${className}`}
       {...props}
     >
-      {children}
+      <span className="pointer-events-none">
+        {children}
+      </span>
     </button>
   );
 };
