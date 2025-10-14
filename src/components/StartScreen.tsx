@@ -1,6 +1,6 @@
 import { Moon, Stars } from "lucide-react";
 import QuizButton from "./QuizButton";
-import AdSenseAd from "./AdSenseAd";
+import AdxAd from "./AdxAd";
 
 interface StartScreenProps {
   onStart: () => void;
@@ -45,12 +45,8 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
           Responda abaixo e veja qual plano simples pode ajudar a melhorar suas noites.
         </p>
 
-        {/* Anúncio AdSense no Start */}
-        <AdSenseAd
-          client="ca-pub-1170863474773514"
-          slot="8117047174"
-          // adtest="on"  // habilite para testar layout sem monetizar
-        />
+        {/* Anúncio ADX no Start */}
+        <AdxAd />
 
         {/* Second paragraph */}
         <p className="text-[16px] text-muted-foreground text-center mb-12 leading-relaxed">
