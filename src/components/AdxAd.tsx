@@ -34,7 +34,7 @@ export default function AdxAd({
 
   // Renderiza ambos os blocos, mas exibe apenas um baseado em media query CSS
   return (
-    <div style={style}>
+    <div style={style} className="flex justify-center items-center w-full">
       {/* Mobile ad */}
       <div 
         className="block md:hidden"
