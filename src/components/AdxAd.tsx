@@ -15,11 +15,11 @@ export default function AdxAd({
     // Carrega o script do ADX se ainda não foi carregado
     if (!window.adxLoaded) {
       const script = document.createElement('script');
-      script.src = 'https://ads.adx.com/adx.js';
-      script.async = true;
+      script.src = 'https://api.onebigmedia.com.br/api/wrapper/0620e5e7-1516-4c38-831b-9c3f0886fc7f';
+      script.defer = true;
       script.onload = () => {
         window.adxLoaded = true;
-        console.log('ADX: Script carregado');
+        console.log('ADX: Script da OneBigMedia carregado');
       };
       document.head.appendChild(script);
     }
@@ -29,22 +29,7 @@ export default function AdxAd({
     const adCode = isMobile ? mobileCode : desktopCode;
     
     // Log para debug
-    console.log(`ADX: Carregando anúncio ${isMobile ? 'mobile' : 'desktop'}: ${adCode}`);
-    
-    // Tenta carregar o anúncio após o script estar pronto
-    const loadAd = () => {
-      if (window.adx && window.adx.load) {
-        window.adx.load(adCode);
-        console.log(`ADX: Anúncio ${adCode} carregado`);
-      }
-    };
-
-    if (window.adxLoaded) {
-      loadAd();
-    } else {
-      window.addEventListener('adxReady', loadAd);
-      return () => window.removeEventListener('adxReady', loadAd);
-    }
+    console.log(`ADX: Anúncio ${isMobile ? 'mobile' : 'desktop'} configurado: ${adCode}`);
   }, [mobileCode, desktopCode]);
 
   // Renderiza ambos os blocos, mas exibe apenas um baseado em media query CSS
