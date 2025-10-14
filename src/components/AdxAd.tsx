@@ -37,13 +37,13 @@ export default function AdxAd({
     <div style={style} className="flex justify-center items-center w-full">
       {/* Mobile ad */}
       <div 
-        className="block md:hidden"
+        className="flex justify-center items-center w-full md:hidden"
         data-adUnitCode={mobileCode}
       />
       
       {/* Desktop ad */}
       <div 
-        className="hidden md:block"
+        className="hidden md:flex md:justify-center md:items-center md:w-full"
         data-adUnitCode={desktopCode}
       />
     </div>
