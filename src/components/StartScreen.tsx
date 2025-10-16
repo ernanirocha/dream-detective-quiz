@@ -84,7 +84,8 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
                 <span className="text-muted-foreground group-open:rotate-180 transition-transform">+</span>
               </summary>
               <div className="px-4 py-3 text-[14px] text-muted-foreground border-t border-border">
-                Sim. A ansiedade aumenta a atividade mental e dificulta o relaxamento, o que leva a despertares frequentes e dificuldade para adormecer.
+                Sim. A ansiedade aumenta a atividade do sistema de alerta, o corpo libera adrenalina e cortisol, o que dificulta adormecer e mantém despertares. Se piora à noite, veja{" "}
+                <a href="https://cleoloiolatp.com/como-aliviar-ansiedade-a-noite/" target="_blank" rel="internal noopener noreferrer" className="text-primary hover:underline">ansiedade à noite</a>.
               </div>
             </details>
 
@@ -94,27 +95,98 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
                 <span className="text-muted-foreground group-open:rotate-180 transition-transform">+</span>
               </summary>
               <div className="px-4 py-3 text-[14px] text-muted-foreground border-t border-border">
-                Isso pode acontecer por deficiências nutricionais, estresse, ou porque o sono profundo não está sendo atingido. É comum em quadros de má qualidade do sono.
+                Pode haver pouco sono profundo, microdespertares por luz, ruído ou álcool, além de horários irregulares. Ajuste ambiente e rotina. Guia prático em{" "}
+                <a href="https://cleoloiolatp.com/higiene-do-sono-quarto-ideal/" target="_blank" rel="internal noopener noreferrer" className="text-primary hover:underline">quarto ideal</a>.
               </div>
             </details>
 
             <details className="group bg-card rounded-lg border border-border overflow-hidden">
               <summary className="cursor-pointer px-4 py-4 text-[15px] font-medium text-foreground hover:bg-secondary/50 transition-colors list-none flex justify-between items-center">
-                <span>Vitamina D3 e magnésio ajudam mesmo a dormir melhor?</span>
+                <span>Quanto tempo antes devo desligar telas para não atrapalhar o sono?</span>
                 <span className="text-muted-foreground group-open:rotate-180 transition-transform">+</span>
               </summary>
               <div className="px-4 py-3 text-[14px] text-muted-foreground border-t border-border">
-                Sim, eles estão ligados à produção de hormônios que regulam o sono e a energia. A falta desses nutrientes pode causar cansaço constante.
+                Desligue 60 a 90 minutos antes de deitar. Se precisar usar, aplique filtro noturno e brilho baixo e evite conteúdos ativadores. Monte um ritual simples com este{" "}
+                <a href="https://cleoloiolatp.com/rotina-antes-de-dormir/" target="_blank" rel="internal noopener noreferrer" className="text-primary hover:underline">passo a passo pré-sono</a>.
               </div>
             </details>
 
             <details className="group bg-card rounded-lg border border-border overflow-hidden">
               <summary className="cursor-pointer px-4 py-4 text-[15px] font-medium text-foreground hover:bg-secondary/50 transition-colors list-none flex justify-between items-center">
-                <span>Quando devo procurar ajuda médica para insônia?</span>
+                <span>O que fazer na hora se eu travar para dormir e a mente acelerar?</span>
                 <span className="text-muted-foreground group-open:rotate-180 transition-transform">+</span>
               </summary>
               <div className="px-4 py-3 text-[14px] text-muted-foreground border-t border-border">
-                Se o problema persistir por mais de três semanas, ou causar prejuízos no trabalho, estudo ou vida social, é indicado buscar acompanhamento profissional.
+                Use respiração 4-6, grounding 5-4-3-2-1, relaxamento muscular por 2 a 3 minutos. Evite celular e telas. Veja técnicas rápidas em{" "}
+                <a href="https://cleoloiolatp.com/app-de-meditacao-gratis/" target="_blank" rel="internal noopener noreferrer" className="text-primary hover:underline">app de meditação grátis</a>.
+              </div>
+            </details>
+
+            <details className="group bg-card rounded-lg border border-border overflow-hidden">
+              <summary className="cursor-pointer px-4 py-4 text-[15px] font-medium text-foreground hover:bg-secondary/50 transition-colors list-none flex justify-between items-center">
+                <span>Cafeína e álcool atrapalham mesmo? Até que horas devo evitar?</span>
+                <span className="text-muted-foreground group-open:rotate-180 transition-transform">+</span>
+              </summary>
+              <div className="px-4 py-3 text-[14px] text-muted-foreground border-t border-border">
+                Cafeína pode reduzir sono profundo por várias horas, prefira evitar após o meio da tarde. Álcool fragmenta o sono, piora ronco e despertares. Combine com hábitos do{" "}
+                <a href="https://cleoloiolatp.com/higiene-do-sono-quarto-ideal/" target="_blank" rel="internal noopener noreferrer" className="text-primary hover:underline">quarto ideal</a>.
+              </div>
+            </details>
+
+            <details className="group bg-card rounded-lg border border-border overflow-hidden">
+              <summary className="cursor-pointer px-4 py-4 text-[15px] font-medium text-foreground hover:bg-secondary/50 transition-colors list-none flex justify-between items-center">
+                <span>Vitamina D3 e magnésio ajudam a dormir melhor?</span>
+                <span className="text-muted-foreground group-open:rotate-180 transition-transform">+</span>
+              </summary>
+              <div className="px-4 py-3 text-[14px] text-muted-foreground border-t border-border">
+                Podem ajudar se houver deficiência ou consumo insuficiente. Suplementos não substituem rotina de sono e manejo da ansiedade. Bases e cuidados em{" "}
+                <a href="https://cleoloiolatp.com/vitamina-d3-e-ansiedade/" target="_blank" rel="internal noopener noreferrer" className="text-primary hover:underline">D3 e ansiedade</a>.
+              </div>
+            </details>
+
+            <details className="group bg-card rounded-lg border border-border overflow-hidden">
+              <summary className="cursor-pointer px-4 py-4 text-[15px] font-medium text-foreground hover:bg-secondary/50 transition-colors list-none flex justify-between items-center">
+                <span>Quais sinais físicos indicam que minha ansiedade está afetando o corpo?</span>
+                <span className="text-muted-foreground group-open:rotate-180 transition-transform">+</span>
+              </summary>
+              <div className="px-4 py-3 text-[14px] text-muted-foreground border-t border-border">
+                Taquicardia, aperto no peito, tremores, tensão muscular, suor frio, tontura e náusea são comuns. Entenda gatilhos e o que fazer no momento da crise em{" "}
+                <a href="https://cleoloiolatp.com/sintomas-fisicos-da-ansiedade/" target="_blank" rel="internal noopener noreferrer" className="text-primary hover:underline">sintomas físicos da ansiedade</a>.
+              </div>
+            </details>
+
+            <details className="group bg-card rounded-lg border border-border overflow-hidden">
+              <summary className="cursor-pointer px-4 py-4 text-[15px] font-medium text-foreground hover:bg-secondary/50 transition-colors list-none flex justify-between items-center">
+                <span>Wearables ajudam a melhorar o sono ou só geram ansiedade com dados?</span>
+                <span className="text-muted-foreground group-open:rotate-180 transition-transform">+</span>
+              </summary>
+              <div className="px-4 py-3 text-[14px] text-muted-foreground border-t border-border">
+                Úteis quando usados para tendências semanais, não para vigiar cada noite. Sincronize de manhã e desative notificações noturnas. Boas práticas em{" "}
+                <a href="https://cleoloiolatp.com/apps-de-meditacao-e-wearables-sincronizar/" target="_blank" rel="internal noopener noreferrer" className="text-primary hover:underline">apps e wearables</a>.
+              </div>
+            </details>
+
+            <details className="group bg-card rounded-lg border border-border overflow-hidden">
+              <summary className="cursor-pointer px-4 py-4 text-[15px] font-medium text-foreground hover:bg-secondary/50 transition-colors list-none flex justify-between items-center">
+                <span>Quando é hora de buscar ajuda profissional para insônia e ansiedade?</span>
+                <span className="text-muted-foreground group-open:rotate-180 transition-transform">+</span>
+              </summary>
+              <div className="px-4 py-3 text-[14px] text-muted-foreground border-t border-border">
+                Se persistir por mais de 3 semanas, se houver ataques de pânico recorrentes ou prejuízo no dia a dia, procure avaliação. Como viabilizar com seu convênio em{" "}
+                <a href="https://cleoloiolatp.com/tratar-ansiedade-com-seu-plano-de-saude/" target="_blank" rel="internal noopener noreferrer" className="text-primary hover:underline">atendimento pelo plano</a> e{" "}
+                <a href="https://cleoloiolatp.com/reembolso-do-plano-de-saude/" target="_blank" rel="internal noopener noreferrer" className="text-primary hover:underline">reembolso</a>.
+              </div>
+            </details>
+
+            <details className="group bg-card rounded-lg border border-border overflow-hidden">
+              <summary className="cursor-pointer px-4 py-4 text-[15px] font-medium text-foreground hover:bg-secondary/50 transition-colors list-none flex justify-between items-center">
+                <span>Existe um "atalho 80/20" para melhorar o sono nos próximos 7 dias?</span>
+                <span className="text-muted-foreground group-open:rotate-180 transition-transform">+</span>
+              </summary>
+              <div className="px-4 py-3 text-[14px] text-muted-foreground border-t border-border">
+                Horário fixo para deitar e acordar, sem telas à noite, quarto escuro e fresco, respiração guiada por 10 minutos e caminhada diurna. Para iniciar hoje, use a{" "}
+                <a href="https://cleoloiolatp.com/trilha-adormecer-rapido-1" target="_blank" rel="internal noopener noreferrer" className="text-primary hover:underline">trilha adormecer rápido</a> ou a{" "}
+                <a href="https://cleoloiolatp.com/trilha-sono-profundo-1" target="_blank" rel="internal noopener noreferrer" className="text-primary hover:underline">trilha sono profundo</a>.
               </div>
             </details>
           </div>
