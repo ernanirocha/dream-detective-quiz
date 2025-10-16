@@ -25,6 +25,30 @@ const CloudPopup = ({ message, onClose }: CloudPopupProps) => {
     return { links, text: textWithoutLinks };
   };
 
+  const getCTAText = (url: string) => {
+    const ctaMap: Record<string, string> = {
+      'rotina-antes-de-dormir': 'Monte seu ritual de sono',
+      'higiene-do-sono-quarto-ideal': 'Ajuste seu ambiente',
+      'app-de-meditacao-gratis': 'Explore técnicas gratuitas',
+      'como-aliviar-ansiedade-a-noite': 'Aprenda a acalmar',
+      'vitamina-d3-e-ansiedade': 'Entenda D3 e bem-estar',
+      'tratar-ansiedade-com-seu-plano-de-saude': 'Viabilize pelo convênio',
+      'reembolso-do-plano-de-saude': 'Saiba sobre reembolso',
+      'gestao-emocional-com-eft': 'Conheça técnicas de EFT',
+      'apps-de-meditacao-e-wearables-sincronizar': 'Integre apps e wearables',
+      'sintomas-fisicos-da-ansiedade': 'Reconheça os sinais',
+      'trilha-adormecer-rapido-1': 'Comece a trilha guiada',
+      'trilha-sono-profundo-1': 'Acesse trilha de sono profundo',
+    };
+    
+    for (const [key, text] of Object.entries(ctaMap)) {
+      if (url.includes(key)) {
+        return text;
+      }
+    }
+    return 'Saiba mais';
+  };
+
   const { links, text } = extractLinksAndText();
 
   return (
@@ -73,7 +97,7 @@ const CloudPopup = ({ message, onClose }: CloudPopupProps) => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-4 py-2 bg-primary text-primary-foreground rounded-full hover:bg-primary/90 transition-colors text-sm font-medium"
               >
-                Ver mais →
+                {getCTAText(link)} →
               </a>
             ))}
           </div>
