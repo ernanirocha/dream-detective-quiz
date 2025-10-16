@@ -18,6 +18,28 @@ const CloudPopup = ({ message, onClose }: CloudPopupProps) => {
     setTimeout(onClose, 400);
   };
 
+  const renderMessageWithLinks = () => {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    const parts = message.split(urlRegex);
+    
+    return parts.map((part, index) => {
+      if (part.match(urlRegex)) {
+        return (
+          <a
+            key={index}
+            href={part}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary underline hover:text-primary/80 transition-colors"
+          >
+            {part}
+          </a>
+        );
+      }
+      return <span key={index}>{part}</span>;
+    });
+  };
+
   return (
     <div 
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/20 backdrop-blur-sm"
@@ -50,7 +72,7 @@ const CloudPopup = ({ message, onClose }: CloudPopupProps) => {
         
         {/* Message */}
         <p className="text-[hsl(var(--cloud-text))] text-base leading-relaxed text-center">
-          {message}
+          {renderMessageWithLinks()}
         </p>
 
         {/* Cloud tail (optional decorative element) */}
