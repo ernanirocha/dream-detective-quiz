@@ -18,27 +18,14 @@ const CloudPopup = ({ message, onClose }: CloudPopupProps) => {
     setTimeout(onClose, 400);
   };
 
-  const renderMessageWithLinks = () => {
+  const extractLinksAndText = () => {
     const urlRegex = /(https?:\/\/[^\s]+)/g;
-    const parts = message.split(urlRegex);
-    
-    return parts.map((part, index) => {
-      if (part.match(urlRegex)) {
-        return (
-          <a
-            key={index}
-            href={part}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary underline hover:text-primary/80 transition-colors"
-          >
-            {part}
-          </a>
-        );
-      }
-      return <span key={index}>{part}</span>;
-    });
+    const links = message.match(urlRegex) || [];
+    const textWithoutLinks = message.replace(urlRegex, '').trim();
+    return { links, text: textWithoutLinks };
   };
+
+  const { links, text } = extractLinksAndText();
 
   return (
     <div 
@@ -71,9 +58,26 @@ const CloudPopup = ({ message, onClose }: CloudPopupProps) => {
         </div>
         
         {/* Message */}
-        <p className="text-[hsl(var(--cloud-text))] text-base leading-relaxed text-center">
-          {renderMessageWithLinks()}
+        <p className="text-[hsl(var(--cloud-text))] text-base leading-relaxed text-center mb-4">
+          {text}
         </p>
+
+        {/* CTA Links */}
+        {links.length > 0 && (
+          <div className="flex flex-col gap-2 mt-4">
+            {links.map((link, index) => (
+              <a
+                key={index}
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-4 py-2 bg-primary text-primary-foreground rounded-full hover:bg-primary/90 transition-colors text-sm font-medium"
+              >
+                Ver mais →
+              </a>
+            ))}
+          </div>
+        )}
 
         {/* Cloud tail (optional decorative element) */}
         <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-8 h-8 bg-[hsl(var(--cloud-bg))] rounded-full opacity-70" />
