@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Props = {
   mobileCode?: string;
@@ -11,7 +11,35 @@ export default function AdxAd({
   desktopCode = "cleoloiolatp_desk_topo",
   style = { display: "block", minHeight: 120, margin: "12px 0" },
 }: Props) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !isVisible) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => {
+      if (containerRef.current) {
+        observer.unobserve(containerRef.current);
+      }
+    };
+  }, [isVisible]);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
     // Carrega o script do ADX se ainda não foi carregado
     if (!window.adxLoaded) {
       const script = document.createElement('script');
@@ -29,23 +57,27 @@ export default function AdxAd({
     const adCode = isMobile ? mobileCode : desktopCode;
     
     // Log para debug
-    console.log(`ADX: Anúncio ${isMobile ? 'mobile' : 'desktop'} configurado: ${adCode}`);
-  }, [mobileCode, desktopCode]);
+    console.log(`ADX: Anúncio ${isMobile ? 'mobile' : 'desktop'} carregado: ${adCode}`);
+  }, [isVisible, mobileCode, desktopCode]);
 
   // Renderiza ambos os blocos, mas exibe apenas um baseado em media query CSS
   return (
-    <div style={style} className="flex justify-center items-center w-full">
-      {/* Mobile ad */}
-      <div 
-        className="flex justify-center items-center w-full md:hidden"
-        data-adUnitCode={mobileCode}
-      />
-      
-      {/* Desktop ad */}
-      <div 
-        className="hidden md:flex md:justify-center md:items-center md:w-full"
-        data-adUnitCode={desktopCode}
-      />
+    <div ref={containerRef} style={style} className="flex justify-center items-center w-full">
+      {isVisible && (
+        <>
+          {/* Mobile ad */}
+          <div 
+            className="flex justify-center items-center w-full md:hidden"
+            data-adUnitCode={mobileCode}
+          />
+          
+          {/* Desktop ad */}
+          <div 
+            className="hidden md:flex md:justify-center md:items-center md:w-full"
+            data-adUnitCode={desktopCode}
+          />
+        </>
+      )}
     </div>
   );
 }

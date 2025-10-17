@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 declare global { 
   interface Window { 
@@ -23,7 +23,35 @@ export default function AdSenseAd({
   responsive = "true",
   adtest = "off"
 }: Props) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !isVisible) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => {
+      if (containerRef.current) {
+        observer.unobserve(containerRef.current);
+      }
+    };
+  }, [isVisible]);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
     const ID = "adsbygoogle-js";
     if (!document.getElementById(ID)) {
       const s = document.createElement("script");
@@ -37,17 +65,21 @@ export default function AdSenseAd({
       try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch {}
     }, 150);
     return () => clearTimeout(t);
-  }, [client, slot]);
+  }, [isVisible, client, slot]);
 
   return (
-    <ins
-      className="adsbygoogle"
-      style={style}
-      data-ad-client={client}
-      data-ad-slot={slot}
-      data-ad-format={format}
-      data-full-width-responsive={responsive}
-      data-adtest={adtest}
-    />
+    <div ref={containerRef}>
+      {isVisible && (
+        <ins
+          className="adsbygoogle"
+          style={style}
+          data-ad-client={client}
+          data-ad-slot={slot}
+          data-ad-format={format}
+          data-full-width-responsive={responsive}
+          data-adtest={adtest}
+        />
+      )}
+    </div>
   );
 }
