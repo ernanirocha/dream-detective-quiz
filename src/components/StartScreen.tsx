@@ -37,7 +37,7 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
 
         {/* Title */}
         <h1 className="text-[22px] font-bold text-foreground text-center mb-4 leading-tight">
-          Descubra o que pode estar travando o seu sono e te causando Insônia
+          Insônia e ansiedade te impedem de dormir? Entenda o motivo
         </h1>
 
         {/* First paragraph */}
