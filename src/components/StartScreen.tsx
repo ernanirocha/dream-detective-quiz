@@ -1,6 +1,59 @@
 import { Moon, Stars } from "lucide-react";
+import { useEffect, useState } from "react";
 import QuizButton from "./QuizButton";
 import AdxAd from "./AdxAd";
+
+const SocialProofBar = ({ onClick }: { onClick: () => void }) => {
+  const [count, setCount] = useState(0);
+  const target = 1859;
+
+  useEffect(() => {
+    const duration = 2000;
+    const startTime = Date.now();
+
+    const animate = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const value = Math.floor(target * progress);
+      setCount(value);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        setCount(target);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, []);
+
+  return (
+    <div 
+      onClick={onClick}
+      role="status" 
+      aria-live="polite"
+      className="max-w-[920px] mx-auto my-1.5 mb-2.5 px-3 py-2.5 rounded-xl bg-sky-100 border border-sky-200 text-sky-900 flex gap-2.5 justify-center items-center text-sm cursor-pointer hover:bg-sky-50 transition-colors"
+    >
+      <span 
+        className="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"
+        aria-hidden="true"
+        style={{
+          animation: 'sleepPulse 1.8s infinite',
+          boxShadow: '0 0 0 0 rgba(34, 197, 94, 0.6)'
+        }}
+      />
+      <span>Atualizado hoje</span>
+      <span className="opacity-50">•</span>
+      <span><strong className="font-extrabold">{count.toLocaleString('pt-BR')}</strong> pessoas fizeram a avaliação de sono esta semana</span>
+      
+      <style>{`
+        @keyframes sleepPulse {
+          70% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+        }
+      `}</style>
+    </div>
+  );
+};
 
 interface StartScreenProps {
   onStart: () => void;
@@ -54,6 +107,9 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
         <p className="text-[16px] text-muted-foreground text-center mb-12 leading-relaxed">
           Entenda seu nível de ansiedade noturna. Não é preciso cadastro*
         </p>
+
+        {/* Social Proof Bar */}
+        <SocialProofBar onClick={onStart} />
 
         {/* CTA Button */}
         <QuizButton variant="primary" onClick={onStart}>
