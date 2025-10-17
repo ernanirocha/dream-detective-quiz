@@ -28,24 +28,27 @@ const SocialProofBar = ({ onClick }: { onClick: () => void }) => {
   }, []);
 
   return (
-    <div 
+    <div
       onClick={onClick}
-      role="status" 
+      role="status"
       aria-live="polite"
       className="max-w-[920px] mx-auto my-1.5 mb-2.5 px-3 py-2.5 rounded-xl bg-sky-100 border border-sky-200 text-sky-900 flex gap-2.5 justify-center items-center text-sm cursor-pointer hover:bg-sky-50 transition-colors"
     >
-      <span 
+      <span
         className="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"
         aria-hidden="true"
         style={{
-          animation: 'sleepPulse 1.8s infinite',
-          boxShadow: '0 0 0 0 rgba(34, 197, 94, 0.6)'
+          animation: "sleepPulse 1.8s infinite",
+          boxShadow: "0 0 0 0 rgba(34, 197, 94, 0.6)",
         }}
       />
       <span>Atualizado hoje</span>
       <span className="opacity-50">•</span>
-      <span><strong className="font-extrabold">{count.toLocaleString('pt-BR')}</strong> pessoas fizeram a avaliação de sono esta semana</span>
-      
+      <span>
+        <strong className="font-extrabold">{count.toLocaleString("pt-BR")}</strong> pessoas fizeram a avaliação de sono
+        esta semana
+      </span>
+
       <style>{`
         @keyframes sleepPulse {
           70% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
@@ -95,7 +98,8 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
 
         {/* First paragraph */}
         <p className="text-[16px] text-muted-foreground text-center mb-4 leading-relaxed">
-          Responda abaixo algumas questões e veja qual plano simples pode ajudar a melhorar suas noites.
+          Insônia recorrente? Identifique em 45 segundos padrões do seu sono e receba orientações simples para testar
+          hoje. Sem cadastro.
         </p>
 
         {/* Anúncio ADX no Start */}
