@@ -84,13 +84,6 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
 
       {/* Content */}
       <div className="relative z-10 max-w-md w-full animate-fade-in">
-        {/* Moon icon with glow */}
-        <div className="flex justify-center mb-8 animate-float">
-          <div className="relative">
-            <Moon className="w-20 h-20 text-[hsl(var(--moon-glow))] drop-shadow-[0_0_20px_rgba(255,240,150,0.6)]" />
-          </div>
-        </div>
-
         {/* Title */}
         <h1 className="text-[22px] font-bold text-foreground text-center mb-4 leading-tight">
           Insônia e ansiedade te impedem de dormir? Entenda o motivo
@@ -114,6 +107,13 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
         <QuizButton variant="primary" onClick={onStart}>
           1º PASSO - SAIBA MAIS
         </QuizButton>
+
+        {/* Moon icon with glow */}
+        <div className="flex justify-center mb-8 animate-float">
+          <div className="relative">
+            <Moon className="w-20 h-20 text-[hsl(var(--moon-glow))] drop-shadow-[0_0_20px_rgba(255,240,150,0.6)]" />
+          </div>
+        </div>
 
         {/* Privacy notice */}
         <p className="text-[14px] text-muted-foreground text-center mt-8 mb-6">
