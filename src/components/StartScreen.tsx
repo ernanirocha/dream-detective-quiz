@@ -110,11 +110,6 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
           hoje. Sem cadastro.
         </p>
 
-        {/* Second paragraph */}
-        <p className="text-[16px] text-muted-foreground text-center mb-12 leading-relaxed">
-          Entenda seu nível de ansiedade noturna. Não é preciso cadastro*
-        </p>
-
         {/* CTA Button */}
         <QuizButton variant="primary" onClick={onStart}>
           1º PASSO - SAIBA MAIS
