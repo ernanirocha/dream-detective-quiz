@@ -57,7 +57,7 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
 
         {/* CTA Button */}
         <QuizButton variant="primary" onClick={onStart}>
-          Começar
+          1º PASSO - Saiba Mais
         </QuizButton>
 
         {/* Privacy notice */}
