@@ -46,7 +46,9 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
         </p>
 
         {/* Anúncio ADX no Start */}
-        <AdxAd />
+        <div className="flex justify-center w-full">
+          <AdxAd />
+        </div>
 
         {/* Second paragraph */}
         <p className="text-[16px] text-muted-foreground text-center mb-12 leading-relaxed">
