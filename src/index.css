@@ -53,6 +53,18 @@ All colors MUST be HSL.
   }
 }
 
+@layer components {
+  .ad-slot { 
+    @apply block mx-auto my-3;
+  }
+  .ad-slot.ad-hero { 
+    min-height: 90px;
+  }
+  .ad-slot.lazy-ad { 
+    min-height: 250px;
+  }
+}
+
 @layer base {
   * {
     @apply border-border;
