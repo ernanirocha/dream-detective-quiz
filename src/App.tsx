@@ -5,7 +5,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import HeaderAd from "@/components/HeaderAd";
 import bgMobile from "@/assets/quiz-bg-mobile.webp";
 import bgDesktop from "@/assets/quiz-bg-desktop.webp";
 
@@ -17,9 +16,6 @@ const App = () => (
       <Toaster />
       <Sonner />
       <div className="relative min-h-screen">
-        {/* ATF Ad - Always visible */}
-        <HeaderAd />
-        
         {/* Background images - mobile/desktop with screen fill */}
         <div className="fixed inset-0 -z-10">
           {/* Mobile background */}
