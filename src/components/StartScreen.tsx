@@ -1,7 +1,7 @@
 import { Moon, Stars } from "lucide-react";
 import { useEffect, useState } from "react";
 import QuizButton from "./QuizButton";
-import HeroAd from "./HeroAd";
+import MidArticleAd from "./MidArticleAd";
 
 const SocialProofBar = ({ onClick }: { onClick: () => void }) => {
   const [count, setCount] = useState(0);
@@ -89,22 +89,24 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
           Insônia e ansiedade te impedem de dormir? Entenda o motivo
         </h1>
 
+        {/* Social Proof Bar */}
+        <SocialProofBar onClick={onStart} />
+
         {/* First paragraph */}
         <p className="text-[16px] text-muted-foreground text-center mb-4 leading-relaxed">
           Insônia recorrente? Identifique em 45 segundos padrões do seu sono e receba orientações simples para testar
           hoje. Sem cadastro.
         </p>
 
-        {/* Anúncio #1 (Hero/ATF) */}
-        <HeroAd />
-
-        {/* Social Proof Bar */}
-        <SocialProofBar onClick={onStart} />
-
         {/* CTA Button */}
         <QuizButton variant="primary" onClick={onStart}>
           1º PASSO - SAIBA MAIS
         </QuizButton>
+
+        {/* BTF Ad - Lazy Load */}
+        <div className="my-6">
+          <MidArticleAd />
+        </div>
 
         {/* Moon icon with glow */}
         <div className="flex justify-center mb-8 animate-float">

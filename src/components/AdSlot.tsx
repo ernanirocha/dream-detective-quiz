@@ -1,60 +1,62 @@
 import { useEffect, useRef } from "react";
 
+type Units = { mobile: string; desktop: string };
 type Props = {
-  unitMobile: string;
-  unitDesktop: string;
-  reveal: "immediate" | "on-visible" | "by-flag";
-  flag?: boolean;        // usado quando reveal === "by-flag"
-  className?: string;    // "ad-hero" (ATF) ou "lazy-ad" (BTF)
-  breakpoint?: number;   // padrão 980
+  units: Units;           // { mobile: '...', desktop: '...' }
+  atf?: boolean;          // true = topo (monta já); false = BTF (lazy)
+  minHeight?: number;     // altura reservada (anti-CLS)
+  breakpoint?: number;    // largura para desktop (padrão 980)
 };
 
 export default function AdSlot({
-  unitMobile,
-  unitDesktop,
-  reveal,
-  flag,
-  className = "",
+  units,
+  atf = false,
+  minHeight,
   breakpoint = 980,
 }: Props) {
   const ref = useRef<HTMLDivElement | null>(null);
   const initialized = useRef(false);
-  const chosen = useRef<string | null>(null);
+  const chosenRef = useRef<string | null>(null);
+
+  const height = minHeight ?? (atf ? 90 : 250);
 
   useEffect(() => {
     const el = ref.current;
     if (!el || initialized.current) return;
 
-    // reserva mínima (reforça CSS global)
-    if (!el.style.minHeight) {
-      el.style.minHeight = className.includes("ad-hero") ? "90px" : "250px";
-    }
+    // reserva anti-CLS
+    el.style.minHeight = `${height}px`;
 
-    const pick = () => {
-      if (chosen.current) return chosen.current;
-      const isDesktop = typeof window !== "undefined" && window.innerWidth >= breakpoint;
-      chosen.current = isDesktop ? unitDesktop : unitMobile;
-      return chosen.current;
+    // escolhe unit UMA vez (evita duplicação em re-render/resize)
+    const pickUnit = () => {
+      if (chosenRef.current) return chosenRef.current;
+      const isDesktop =
+        typeof window !== "undefined" && window.innerWidth >= breakpoint;
+      chosenRef.current = isDesktop ? units.desktop : units.mobile;
+      return chosenRef.current;
     };
 
-    const expose = () => {
+    const reveal = () => {
       if (initialized.current) return;
-      const unit = pick();
+      const unit = pickUnit();
       if (!unit) return;
       el.setAttribute("data-adunitcode", unit);
       initialized.current = true;
     };
 
-    if (reveal === "immediate") { expose(); return; }
-    if (reveal === "by-flag")   { if (flag) expose(); return; }
+    if (atf) {
+      // topo: expõe imediatamente
+      reveal();
+      return;
+    }
 
-    // on-visible (IntersectionObserver)
+    // BTF: expõe perto da viewport
     if ("IntersectionObserver" in window) {
       const io = new IntersectionObserver(
         (entries, obs) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              expose();
+              reveal();
               obs.unobserve(entry.target);
             }
           });
@@ -64,14 +66,15 @@ export default function AdSlot({
       io.observe(el);
       return () => io.disconnect();
     } else {
-      expose();
+      // fallback
+      reveal();
     }
-  }, [flag, unitMobile, unitDesktop, reveal, className, breakpoint]);
+  }, [units, atf, height, breakpoint]);
 
   return (
     <div
       ref={ref}
-      className={`ad-slot ${className}`}
+      className={`ad-slot ${atf ? "ad-atf" : "lazy-ad"}`}
       role="complementary"
       aria-label="Publicidade"
     />
