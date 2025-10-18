@@ -53,6 +53,48 @@ All colors MUST be HSL.
   }
 }
 
+/* ADX Ad Slots - Centralização e Anti-CLS */
+.ad-slot { 
+  display: block; 
+  margin: 12px auto; 
+}
+
+.ad-slot.ad-hero { 
+  min-height: 90px; 
+}
+
+.ad-slot.lazy-ad { 
+  min-height: 250px; 
+}
+
+/* Centralizar 100% (desktop e mobile) */
+.ad-center { 
+  display: flex; 
+  justify-content: center; 
+  width: 100%; 
+}
+
+.ad-center .ad-slot { 
+  width: 100%; 
+}
+
+/* Quando o wrapper injetar iframe/div, force centralização */
+.ad-center > iframe,
+.ad-center > div,
+.ad-center .ad-slot > iframe,
+.ad-center .ad-slot > div {
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* 970x250: limite para não colar nas bordas em desktop largo */
+@media (min-width: 980px) {
+  .ad-center .ad-slot { 
+    max-width: 970px; 
+  }
+}
+
 @layer base {
   * {
     @apply border-border;

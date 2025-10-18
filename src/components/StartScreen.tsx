@@ -1,31 +1,53 @@
 import { Moon, Stars } from "lucide-react";
 import { useEffect, useState } from "react";
 import QuizButton from "./QuizButton";
-import AdxAd from "./AdxAd";
+import HeroAd from "./HeroAd";
 
 const SocialProofBar = ({ onClick }: { onClick: () => void }) => {
   const [count, setCount] = useState(0);
   const target = 1859;
 
   useEffect(() => {
-    const duration = 2000;
-    const startTime = Date.now();
+    const tickMs = 2000;
+    let current = 0;
 
-    const animate = () => {
-      const elapsed = Date.now() - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const value = Math.floor(target * progress);
-      setCount(value);
+    // Fases: 3 em 3 (4 vezes) -> 5 em 5 (6 vezes) -> 1 em 1 (até o alvo)
+    const phases = [
+      { step: 3, ticks: 4 },
+      { step: 5, ticks: 6 },
+      { step: 1, ticks: Infinity },
+    ];
 
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      } else {
+    const nextStep = () => {
+      if (current >= target) {
         setCount(target);
+        return;
       }
+
+      const remaining = target - current;
+      let step = 1;
+
+      // Descobre fase atual
+      for (let i = 0; i < phases.length; i++) {
+        const ph = phases[i];
+        if (ph.ticks > 0) {
+          step = ph.step;
+          ph.ticks--;
+          break;
+        }
+      }
+
+      // Não ultrapassar o alvo
+      step = Math.min(step, remaining);
+      current += step;
+      setCount(current);
+
+      setTimeout(nextStep, tickMs);
     };
 
-    requestAnimationFrame(animate);
-  }, []);
+    setCount(current);
+    setTimeout(nextStep, tickMs);
+  }, [target]);
 
   return (
     <div
@@ -89,19 +111,17 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
           Insônia e ansiedade te impedem de dormir? Entenda o motivo
         </h1>
 
-        {/* Social Proof Bar */}
-        <SocialProofBar onClick={onStart} />
-
-        {/* Anúncio ADX no Start */}
-        <div className="flex justify-center w-full">
-          <AdxAd />
-        </div>
-
         {/* First paragraph */}
         <p className="text-[16px] text-muted-foreground text-center mb-4 leading-relaxed">
           Insônia recorrente? Identifique em 45 segundos padrões do seu sono e receba orientações simples para testar
           hoje. Sem cadastro.
         </p>
+
+        {/* Hero Ad - ATF (centralizado) */}
+        <HeroAd />
+
+        {/* Social Proof Bar */}
+        <SocialProofBar onClick={onStart} />
 
         {/* CTA Button */}
         <QuizButton variant="primary" onClick={onStart}>
