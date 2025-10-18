@@ -1,7 +1,7 @@
 import { Moon, Stars } from "lucide-react";
 import { useEffect, useState } from "react";
 import QuizButton from "./QuizButton";
-import MidArticleAd from "./MidArticleAd";
+import AdxAd from "./AdxAd";
 
 const SocialProofBar = ({ onClick }: { onClick: () => void }) => {
   const [count, setCount] = useState(0);
@@ -92,6 +92,11 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
         {/* Social Proof Bar */}
         <SocialProofBar onClick={onStart} />
 
+        {/* Anúncio ADX no Start */}
+        <div className="flex justify-center w-full">
+          <AdxAd />
+        </div>
+
         {/* First paragraph */}
         <p className="text-[16px] text-muted-foreground text-center mb-4 leading-relaxed">
           Insônia recorrente? Identifique em 45 segundos padrões do seu sono e receba orientações simples para testar
@@ -102,11 +107,6 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
         <QuizButton variant="primary" onClick={onStart}>
           1º PASSO - SAIBA MAIS
         </QuizButton>
-
-        {/* BTF Ad - Lazy Load */}
-        <div className="my-6">
-          <MidArticleAd />
-        </div>
 
         {/* Moon icon with glow */}
         <div className="flex justify-center mb-8 animate-float">

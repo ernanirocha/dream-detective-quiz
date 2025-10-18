@@ -53,20 +53,6 @@ All colors MUST be HSL.
   }
 }
 
-/* ADX Ad Slots - Anti-CLS */
-.ad-slot { 
-  display: block; 
-  margin: 12px auto; 
-}
-
-.ad-slot.ad-atf { 
-  min-height: 90px; 
-}
-
-.ad-slot.lazy-ad { 
-  min-height: 250px; 
-}
-
 @layer base {
   * {
     @apply border-border;
