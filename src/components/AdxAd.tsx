@@ -7,87 +7,87 @@ type Props = {
 };
 
 export default function AdxAd({
-  mobileCode = "cleoloiolatp_mob_anchor",
-  desktopCode = "cleoloiolatp_desk_anchor",
-  style = { display: "block", minHeight: 120, margin: "12px 0" },
+  mobileCode = "cleoloiolatp_mob_topo",
+  desktopCode = "cleoloiolatp_desk_topo",
+  style = { display: "block", minHeight: 250, margin: "12px 0" },
 }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const slotRef = useRef<HTMLDivElement>(null); // ⬅️ novo
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    const el = containerRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !isVisible) {
-            setIsVisible(true);
-          }
+        entries.forEach((e) => {
+          if (e.isIntersecting && !isVisible) setIsVisible(true);
         });
       },
       { threshold: 0.1 },
     );
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-
-    return () => {
-      if (containerRef.current) {
-        observer.unobserve(containerRef.current);
-      }
-    };
+    io.observe(el);
+    return () => io.disconnect();
   }, [isVisible]);
 
   useEffect(() => {
     if (!isVisible) return;
 
-    // Carrega o script do ADX se ainda não foi carregado
     if (!window.adxLoaded) {
-      const script = document.createElement("script");
-      script.src = "https://api.onebigmedia.com.br/api/wrapper/0620e5e7-1516-4c38-831b-9c3f0886fc7f";
-      script.defer = true;
-      script.onload = () => {
+      const s = document.createElement("script");
+      s.src = "https://api.onebigmedia.com.br/api/wrapper/0620e5e7-1516-4c38-831b-9c3f0886fc7f";
+      s.defer = true;
+      s.onload = () => {
         window.adxLoaded = true;
-        console.log("ADX: Script da OneBigMedia carregado");
       };
-      document.head.appendChild(script);
+      document.head.appendChild(s);
     }
 
-    // Detecta se é mobile ou desktop
-    const isMobile = window.innerWidth <= 768;
-    const adCode = isMobile ? mobileCode : desktopCode;
-
-    // Log para debug
-    console.log(`ADX: Anúncio ${isMobile ? "mobile" : "desktop"} carregado: ${adCode}`);
+    const isDesktop = window.innerWidth >= 980;
+    const chosen = isDesktop && desktopCode ? desktopCode : mobileCode;
+    const slot = slotRef.current;
+    if (slot) slot.setAttribute("data-adunitcode", chosen); // expõe um único unit
   }, [isVisible, mobileCode, desktopCode]);
 
-  // Renderiza ambos os blocos, mas exibe apenas um baseado em media query CSS
-  return (
-    <div ref={containerRef} className="ad-slot" style={style}>
-      {isVisible && (
-        <>
-          {/* Mobile ad */}
-          <div 
-            className="md:hidden w-full flex justify-center min-h-[120px]" 
-            data-adunitcode={mobileCode} 
-          />
+  // ⬇️ centraliza QUALQUER nó que o wrapper injetar (filho/netos)
+  useEffect(() => {
+    const slot = slotRef.current;
+    if (!slot) return;
+    const mo = new MutationObserver(() => {
+      const first = slot.firstElementChild as HTMLElement | null;
+      if (!first) return;
+      first.style.display = "block";
+      first.style.marginLeft = "auto";
+      first.style.marginRight = "auto";
+      first.querySelectorAll("iframe, div").forEach((n) => {
+        const el = n as HTMLElement;
+        el.style.display = "block";
+        el.style.marginLeft = "auto";
+        el.style.marginRight = "auto";
+      });
+    });
+    mo.observe(slot, { childList: true, subtree: true });
+    return () => mo.disconnect();
+  }, []);
 
-          {/* Desktop ad */}
-          <div 
-            className="hidden md:flex md:justify-center md:w-full md:min-h-[120px]" 
-            data-adunitcode={desktopCode} 
-          />
-        </>
+  return (
+    <div ref={containerRef} style={style} className="w-full">
+      {isVisible && (
+        <div
+          ref={slotRef} // ⬅️ novo
+          style={{ display: "block", margin: "0 auto", width: "100%", maxWidth: 970 }}
+          className="ad-slot"
+          role="complementary"
+          aria-label="Publicidade"
+        />
       )}
     </div>
   );
 }
 
-// Adiciona tipagem para window
 declare global {
   interface Window {
     adxLoaded?: boolean;
-    adx?: {
-      load: (adCode: string) => void;
-    };
+    adx?: { load: (adCode: string) => void };
   }
 }

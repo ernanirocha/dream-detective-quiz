@@ -52,9 +52,7 @@ const Question = ({
       <div className="max-w-md w-full animate-slide-up">
         {/* ADX na pergunta 2 */}
         {questionNumber === 2 && (
-          <div className="ad-center" style={{ marginBottom: "24px" }}>
-            <AdxAd />
-          </div>
+          <AdxAd />
         )}
         
         {/* Progress */}

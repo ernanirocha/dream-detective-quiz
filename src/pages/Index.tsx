@@ -65,12 +65,10 @@ const Index = () => {
             globalFeedback={questions[currentQuestionIndex].globalFeedback}
           />
           
-          {/* Ad BTF após 2ª pergunta - só renderiza quando flag for true */}
-          {showAdAfterQ2 && (
-            <div className="ad-center" style={{ margin: "16px 0" }}>
-              <AfterSecondQuestionAd show={true} />
-            </div>
-          )}
+          {/* Ad BTF após 2ª pergunta */}
+          <div style={{ margin: "16px 0" }}>
+            <AfterSecondQuestionAd show={showAdAfterQ2} />
+          </div>
         </>
       )}
       

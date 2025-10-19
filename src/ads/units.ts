@@ -4,8 +4,8 @@ export const UNITS = {
   heroDesktop: "cleoloiolatp_desk_topo",
 
   // Depois da 2ª pergunta (anúncio #2)
-  btfMobile: "cleoloiolatp_mob_topo",
-  btfDesktop: "cleoloiolatp_desk_topo",
+  btfMobile: "cleoloiolatp_mob_anchor",
+  btfDesktop: "cleoloiolatp_desk_anchor",
 };
 
 export const DESKTOP_BREAKPOINT = 980;
