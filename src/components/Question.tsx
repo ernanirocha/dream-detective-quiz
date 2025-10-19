@@ -1,7 +1,6 @@
 import ProgressDots from "./ProgressDots";
 import QuizButton from "./QuizButton";
 import CloudPopup from "./CloudPopup";
-import BTFAd from "./BTFAd";
 
 interface QuestionOption {
   id: number;
@@ -40,13 +39,7 @@ const Question = ({
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--night-gradient-start))]/40 to-[hsl(var(--night-gradient-end))]/40 flex flex-col items-center justify-center p-6">
-      {questionNumber === 3 && (
-        <div className="w-full flex justify-center mb-6">
-          <BTFAd />
-        </div>
-      )}
-
+    <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--night-gradient-start))]/40 to-[hsl(var(--night-gradient-end))]/40 flex items-center justify-center p-6">
       <div className="max-w-md w-full animate-slide-up">
         {/* Progress */}
         <ProgressDots total={totalQuestions} current={questionNumber} />

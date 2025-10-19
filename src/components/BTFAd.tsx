@@ -1,13 +1,14 @@
-import AdxAd from "./AdxAd";
-import { UNITS } from "../ads/units";
+import AdSlot from "./AdSlot";
+import { UNITS, DESKTOP_BREAKPOINT } from "../ads/units";
 
 export default function BTFAd() {
   return (
-    <AdxAd
-      mobileCode={UNITS.btfMobile}
-      desktopCode={UNITS.btfDesktop}
-      style={{ display: "block", minHeight: 250, margin: "12px 0" }}
+    <AdSlot
+      unitMobile={UNITS.btfMobile}
+      unitDesktop={UNITS.btfDesktop}
+      reveal="immediate"
+      className="lazy-ad"
+      breakpoint={DESKTOP_BREAKPOINT}
     />
   );
 }
-
