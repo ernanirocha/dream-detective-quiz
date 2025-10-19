@@ -19,6 +19,7 @@ interface QuestionProps {
   isPopupOpen: boolean;
   currentFeedback: string;
   onPopupClose: () => void;
+  adSlot?: React.ReactNode;
 }
 
 const Question = ({ 
@@ -31,7 +32,8 @@ const Question = ({
   globalFeedback,
   isPopupOpen,
   currentFeedback,
-  onPopupClose
+  onPopupClose,
+  adSlot
 }: QuestionProps) => {
   const handleOptionClick = (option: QuestionOption) => {
     const feedback = option.feedback || globalFeedback || "";
@@ -39,7 +41,13 @@ const Question = ({
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--night-gradient-start))]/40 to-[hsl(var(--night-gradient-end))]/40 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--night-gradient-start))]/40 to-[hsl(var(--night-gradient-end))]/40 flex flex-col items-center justify-center p-6">
+      {adSlot && (
+        <div className="w-full flex justify-center mb-6">
+          {adSlot}
+        </div>
+      )}
+
       <div className="max-w-md w-full animate-slide-up">
         {/* Progress */}
         <ProgressDots total={totalQuestions} current={questionNumber} />
