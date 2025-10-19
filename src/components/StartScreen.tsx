@@ -113,8 +113,8 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
 
         {/* First paragraph */}
         <p className="text-[16px] text-muted-foreground text-center mb-4 leading-relaxed">
-          Insônia recorrente? Identifique em 45 segundos padrões do seu sono e receba orientações simples para testar
-          hoje. Sem cadastro.
+          Se você consegue responder 5 perguntas rápidas, pode entender o que mais atrapalha seu sono hoje. Leva ~45s,
+          sem cadastro.
         </p>
 
         {/* Hero Ad - ATF (centralizado) */}
