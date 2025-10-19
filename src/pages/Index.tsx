@@ -56,9 +56,11 @@ const Index = () => {
       {currentScreen === "question" && (
         <>
           {/* Ad BTF no topo da 3ª pergunta */}
-          <div className="my-4">
-            <AfterSecondQuestionAd show={showAdAfterQ2} />
-          </div>
+          {currentQuestionIndex === 2 && showAdAfterQ2 && (
+            <div className="q2-ad">
+              <AfterSecondQuestionAd show={showAdAfterQ2} />
+            </div>
+          )}
           <Question
             questionNumber={currentQuestionIndex + 1}
             totalQuestions={questions.length}

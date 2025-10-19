@@ -59,13 +59,22 @@ export default function AdSlot({
 
     // CENTRALIZAÇÃO À PROVA DE FALHAS (MutationObserver)
     const mo = new MutationObserver(() => {
-      const child = el.firstElementChild as HTMLElement | null;
-      if (!child) return;
-      child.style.display = "block";
-      child.style.marginLeft = "auto";
-      child.style.marginRight = "auto";
+      // Centraliza TODOS os filhos e netos (não só o primeiro)
+      const applyCenter = (node: Element) => {
+        if (node instanceof HTMLElement) {
+          node.style.display = "block";
+          node.style.marginLeft = "auto";
+          node.style.marginRight = "auto";
+        }
+        // Aplica recursivamente aos filhos
+        Array.from(node.children).forEach(applyCenter);
+      };
+      
+      if (el.firstElementChild) {
+        applyCenter(el.firstElementChild);
+      }
     });
-    mo.observe(el, { childList: true });
+    mo.observe(el, { childList: true, subtree: true });
     return () => mo.disconnect();
   }, [flag, unitMobile, unitDesktop, reveal, className, breakpoint]);
 

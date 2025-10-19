@@ -95,6 +95,20 @@ All colors MUST be HSL.
   }
 }
 
+/* Wrapper dedicado para o 2º anúncio (BTF após Q2) */
+.q2-ad {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 16px 0;
+}
+
+.q2-ad .ad-slot {
+  width: 100%;
+  max-width: 970px;
+  margin: 0 auto;
+}
+
 @layer base {
   * {
     @apply border-border;
