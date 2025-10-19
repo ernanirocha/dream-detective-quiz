@@ -2,13 +2,13 @@ import { useEffect, useRef, useState } from "react";
 
 type Props = {
   mobileCode?: string;
-  desktopCode?: string; // mantido por compatibilidade (não usado)
+  desktopCode?: string;
   style?: React.CSSProperties;
 };
 
 export default function AdxAd({
   mobileCode = "cleoloiolatp_mob_topo",
-  desktopCode, // ignorado
+  desktopCode = "cleoloiolatp_desk_topo",
   style = { display: "block", minHeight: 250, margin: "12px 0" },
 }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -18,7 +18,7 @@ export default function AdxAd({
     const el = containerRef.current;
     if (!el) return;
 
-    const observer = new IntersectionObserver(
+    const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && !isVisible) setIsVisible(true);
@@ -27,35 +27,38 @@ export default function AdxAd({
       { threshold: 0.1 },
     );
 
-    observer.observe(el);
-    return () => observer.disconnect();
+    io.observe(el);
+    return () => io.disconnect();
   }, [isVisible]);
 
   useEffect(() => {
     if (!isVisible) return;
 
-    // (opcional) mantém seu carregamento do wrapper, sem mudanças estruturais
+    // ideal: carregar o wrapper no <head>; mantendo seu fluxo atual:
     if (!window.adxLoaded) {
-      const script = document.createElement("script");
-      script.src = "https://api.onebigmedia.com.br/api/wrapper/0620e5e7-1516-4c38-831b-9c3f0886fc7f";
-      script.defer = true;
-      script.onload = () => {
+      const s = document.createElement("script");
+      s.src = "https://api.onebigmedia.com.br/api/wrapper/0620e5e7-1516-4c38-831b-9c3f0886fc7f";
+      s.defer = true;
+      s.onload = () => {
         window.adxLoaded = true;
       };
-      document.head.appendChild(script);
+      document.head.appendChild(s);
     }
 
-    console.log(`ADX (mobile) carregado: ${mobileCode}`);
-  }, [isVisible, mobileCode]);
+    // apenas log para debug
+    const isDesktop = window.innerWidth >= 980;
+    const chosen = isDesktop && desktopCode ? desktopCode : mobileCode;
+    console.log(`ADX: exibindo ${isDesktop ? "desktop" : "mobile"} → ${chosen}`);
+  }, [isVisible, mobileCode, desktopCode]);
 
-  // rende UM ÚNICO placeholder (mobile) e garante centralização
+  // UM placeholder; escolhe o unit no momento de exibir
   return (
     <div ref={containerRef} style={style} className="flex justify-center items-center w-full">
       {isVisible && (
         <div
-          // atributo correto para o wrapper
-          data-adunitcode={mobileCode}
-          // centralização robusta
+          // ⬇️ atributo correto e único
+          data-adunitcode={window.innerWidth >= 980 && desktopCode ? desktopCode : mobileCode}
+          // centralização
           style={{ display: "block", margin: "0 auto", width: "100%", maxWidth: 970 }}
           className="flex justify-center items-center"
         />
