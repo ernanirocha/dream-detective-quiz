@@ -1,7 +1,7 @@
-import { useState } from "react";
 import ProgressDots from "./ProgressDots";
 import QuizButton from "./QuizButton";
 import CloudPopup from "./CloudPopup";
+import AfterSecondQuestionAd from "./AfterSecondQuestionAd";
 
 
 interface QuestionOption {
@@ -15,9 +15,13 @@ interface QuestionProps {
   totalQuestions: number;
   title: string;
   options: QuestionOption[];
-  onAnswer: (optionId: number) => void;
+  onAnswer: (optionId: number, feedback: string) => void;
   onBack?: () => void;
   globalFeedback?: string;
+  isPopupOpen: boolean;
+  currentFeedback: string;
+  onPopupClose: () => void;
+  showAdBefore?: boolean;
 }
 
 const Question = ({ 
@@ -27,29 +31,27 @@ const Question = ({
   options, 
   onAnswer,
   onBack,
-  globalFeedback 
+  globalFeedback,
+  isPopupOpen,
+  currentFeedback,
+  onPopupClose,
+  showAdBefore = false
 }: QuestionProps) => {
-  const [showPopup, setShowPopup] = useState(false);
-  const [currentFeedback, setCurrentFeedback] = useState("");
-  const [selectedOption, setSelectedOption] = useState<number | null>(null);
-
   const handleOptionClick = (option: QuestionOption) => {
-    setSelectedOption(option.id);
     const feedback = option.feedback || globalFeedback || "";
-    setCurrentFeedback(feedback);
-    setShowPopup(true);
-  };
-
-  const handlePopupClose = () => {
-    setShowPopup(false);
-    if (selectedOption !== null) {
-      setTimeout(() => onAnswer(selectedOption), 300);
-    }
+    onAnswer(option.id, feedback);
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--night-gradient-start))]/40 to-[hsl(var(--night-gradient-end))]/40 flex items-center justify-center p-6">
       <div className="max-w-md w-full animate-slide-up">
+        
+        {/* Ad BTF no topo da Q3 */}
+        {showAdBefore && (
+          <div className="q3-ad">
+            <AfterSecondQuestionAd show={true} />
+          </div>
+        )}
         
         {/* Progress */}
         <ProgressDots total={totalQuestions} current={questionNumber} />
@@ -91,10 +93,10 @@ const Question = ({
       </div>
 
       {/* Cloud popup feedback */}
-      {showPopup && (
+      {isPopupOpen && (
         <CloudPopup
           message={currentFeedback}
-          onClose={handlePopupClose}
+          onClose={onPopupClose}
         />
       )}
     </div>

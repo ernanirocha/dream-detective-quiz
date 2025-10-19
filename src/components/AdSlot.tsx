@@ -20,6 +20,7 @@ export default function AdSlot({
   const ref = useRef<HTMLDivElement | null>(null);
   const initialized = useRef(false);
   const chosen = useRef<string | null>(null);
+  const collapseTimeout = useRef<number | null>(null);
 
   useEffect(() => {
     const el = ref.current;
@@ -45,6 +46,13 @@ export default function AdSlot({
       if (!unit) return;
       el.setAttribute("data-adunitcode", unit);
       initialized.current = true;
+
+      // Timeout para colapsar se nenhum criativo aparecer em 2s
+      collapseTimeout.current = window.setTimeout(() => {
+        if (el && !el.firstElementChild) {
+          el.classList.add("ad-empty");
+        }
+      }, 2000);
     };
 
     // HERO: monta na hora
@@ -72,10 +80,21 @@ export default function AdSlot({
       
       if (el.firstElementChild) {
         applyCenter(el.firstElementChild);
+        
+        // Cancelar timeout de colapso se criativo apareceu
+        if (collapseTimeout.current) {
+          clearTimeout(collapseTimeout.current);
+          collapseTimeout.current = null;
+        }
       }
     });
     mo.observe(el, { childList: true, subtree: true });
-    return () => mo.disconnect();
+    return () => {
+      mo.disconnect();
+      if (collapseTimeout.current) {
+        clearTimeout(collapseTimeout.current);
+      }
+    };
   }, [flag, unitMobile, unitDesktop, reveal, className, breakpoint]);
 
   return (

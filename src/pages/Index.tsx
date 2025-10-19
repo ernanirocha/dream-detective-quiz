@@ -12,6 +12,9 @@ const Index = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
   const [showAdAfterQ2, setShowAdAfterQ2] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [currentFeedback, setCurrentFeedback] = useState("");
+  const [pendingQuestionIndex, setPendingQuestionIndex] = useState<number | null>(null);
 
   const handleStart = () => {
     setCurrentScreen("question");
@@ -19,20 +22,40 @@ const Index = () => {
     setAnswers([]);
   };
 
-  const handleAnswer = (optionId: number) => {
+  const handleAnswer = (optionId: number, feedback: string) => {
     const newAnswers = [...answers];
     newAnswers[currentQuestionIndex] = optionId;
     setAnswers(newAnswers);
 
-    if (currentQuestionIndex < questions.length - 1) {
-      const nextIndex = currentQuestionIndex + 1;
-      setCurrentQuestionIndex(nextIndex);
+    // Abrir popup com feedback
+    setCurrentFeedback(feedback);
+    setIsPopupOpen(true);
 
-      // Mostra anúncio BTF após a 2ª pergunta (no topo da 3ª pergunta)
-      if (nextIndex >= 2 && !showAdAfterQ2) {
-        setShowAdAfterQ2(true);
-      }
+    // Guardar próximo índice
+    if (currentQuestionIndex < questions.length - 1) {
+      setPendingQuestionIndex(currentQuestionIndex + 1);
     } else {
+      setPendingQuestionIndex(null);
+    }
+  };
+
+  const handlePopupClose = () => {
+    setIsPopupOpen(false);
+
+    if (pendingQuestionIndex !== null) {
+      // Avançar para próxima pergunta
+      setCurrentQuestionIndex(pendingQuestionIndex);
+      
+      // Se for Q2→Q3, ativar anúncio DEPOIS de Q3 renderizar
+      if (pendingQuestionIndex === 2 && !showAdAfterQ2) {
+        setTimeout(() => {
+          setShowAdAfterQ2(true);
+        }, 100);
+      }
+      
+      setPendingQuestionIndex(null);
+    } else {
+      // Era a última pergunta
       setCurrentScreen("results");
     }
   };
@@ -54,23 +77,19 @@ const Index = () => {
       {currentScreen === "start" && <StartScreen onStart={handleStart} />}
 
       {currentScreen === "question" && (
-        <>
-          {/* Ad BTF no topo da 3ª pergunta */}
-          {currentQuestionIndex === 2 && showAdAfterQ2 && (
-            <div className="q2-ad">
-              <AfterSecondQuestionAd show={showAdAfterQ2} />
-            </div>
-          )}
-          <Question
-            questionNumber={currentQuestionIndex + 1}
-            totalQuestions={questions.length}
-            title={questions[currentQuestionIndex].title}
-            options={questions[currentQuestionIndex].options}
-            onAnswer={handleAnswer}
-            onBack={handleBack}
-            globalFeedback={questions[currentQuestionIndex].globalFeedback}
-          />
-        </>
+        <Question
+          questionNumber={currentQuestionIndex + 1}
+          totalQuestions={questions.length}
+          title={questions[currentQuestionIndex].title}
+          options={questions[currentQuestionIndex].options}
+          onAnswer={handleAnswer}
+          onBack={handleBack}
+          globalFeedback={questions[currentQuestionIndex].globalFeedback}
+          isPopupOpen={isPopupOpen}
+          currentFeedback={currentFeedback}
+          onPopupClose={handlePopupClose}
+          showAdBefore={currentQuestionIndex === 2 && showAdAfterQ2}
+        />
       )}
 
       {currentScreen === "results" && <Results profile={getResultProfile()} />}
