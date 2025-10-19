@@ -28,8 +28,8 @@ const Index = () => {
       const nextIndex = currentQuestionIndex + 1;
       setCurrentQuestionIndex(nextIndex);
       
-      // Mostra anúncio BTF após a 2ª pergunta (índice 2 = 3ª pergunta iniciando)
-      if (nextIndex >= 2 && !showAdAfterQ2) {
+      // Mostra anúncio BTF após a 3ª pergunta (índice 3 = 4ª pergunta iniciando)
+      if (nextIndex >= 3 && !showAdAfterQ2) {
         setShowAdAfterQ2(true);
       }
     } else {
