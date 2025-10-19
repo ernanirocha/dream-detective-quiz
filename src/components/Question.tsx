@@ -1,8 +1,7 @@
 import ProgressDots from "./ProgressDots";
 import QuizButton from "./QuizButton";
 import CloudPopup from "./CloudPopup";
-import AfterSecondQuestionAd from "./AfterSecondQuestionAd";
-
+import BTFAd from "./BTFAd";
 
 interface QuestionOption {
   id: number;
@@ -21,7 +20,6 @@ interface QuestionProps {
   isPopupOpen: boolean;
   currentFeedback: string;
   onPopupClose: () => void;
-  showAdBefore?: boolean;
 }
 
 const Question = ({ 
@@ -34,8 +32,7 @@ const Question = ({
   globalFeedback,
   isPopupOpen,
   currentFeedback,
-  onPopupClose,
-  showAdBefore = false
+  onPopupClose
 }: QuestionProps) => {
   const handleOptionClick = (option: QuestionOption) => {
     const feedback = option.feedback || globalFeedback || "";
@@ -47,11 +44,7 @@ const Question = ({
       <div className="max-w-md w-full animate-slide-up">
         
         {/* Ad BTF no topo da Q3 */}
-        {showAdBefore && (
-          <div className="q3-ad">
-            <AfterSecondQuestionAd show={true} />
-          </div>
-        )}
+        {questionNumber === 3 && <BTFAd />}
         
         {/* Progress */}
         <ProgressDots total={totalQuestions} current={questionNumber} />

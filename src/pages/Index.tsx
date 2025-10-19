@@ -2,7 +2,6 @@ import { useState } from "react";
 import StartScreen from "@/components/StartScreen";
 import Question from "@/components/Question";
 import Results from "@/components/Results";
-import AfterSecondQuestionAd from "@/components/AfterSecondQuestionAd";
 import { questions, resultProfiles } from "@/data/quizData";
 
 type Screen = "start" | "question" | "results";
@@ -11,7 +10,6 @@ const Index = () => {
   const [currentScreen, setCurrentScreen] = useState<Screen>("start");
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
-  const [showAdAfterQ2, setShowAdAfterQ2] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [currentFeedback, setCurrentFeedback] = useState("");
   const [pendingQuestionIndex, setPendingQuestionIndex] = useState<number | null>(null);
@@ -43,19 +41,9 @@ const Index = () => {
     setIsPopupOpen(false);
 
     if (pendingQuestionIndex !== null) {
-      // Avançar para próxima pergunta
       setCurrentQuestionIndex(pendingQuestionIndex);
-      
-      // Se for Q2→Q3, ativar anúncio DEPOIS de Q3 renderizar
-      if (pendingQuestionIndex === 2 && !showAdAfterQ2) {
-        setTimeout(() => {
-          setShowAdAfterQ2(true);
-        }, 100);
-      }
-      
       setPendingQuestionIndex(null);
     } else {
-      // Era a última pergunta
       setCurrentScreen("results");
     }
   };
@@ -88,7 +76,6 @@ const Index = () => {
           isPopupOpen={isPopupOpen}
           currentFeedback={currentFeedback}
           onPopupClose={handlePopupClose}
-          showAdBefore={currentQuestionIndex === 2 && showAdAfterQ2}
         />
       )}
 

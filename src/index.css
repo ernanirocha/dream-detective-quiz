@@ -95,20 +95,6 @@ All colors MUST be HSL.
   }
 }
 
-/* Wrapper dedicado para o anúncio BTF no topo da Q3 */
-.q3-ad {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin: 0 0 16px 0;
-}
-
-.q3-ad .ad-slot {
-  width: 100%;
-  max-width: 970px;
-  margin: 0 auto;
-}
-
 /* Colapsa se vazio após timeout */
 .ad-empty {
   display: none !important;
