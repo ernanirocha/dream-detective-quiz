@@ -7,7 +7,7 @@ export default function BTFAd() {
       unitMobile={UNITS.btfMobile}
       unitDesktop={UNITS.btfDesktop}
       reveal="immediate"
-      className="ad-hero"
+      className="lazy-ad"
       breakpoint={DESKTOP_BREAKPOINT}
     />
   );

@@ -41,11 +41,10 @@ const Question = ({
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--night-gradient-start))]/40 to-[hsl(var(--night-gradient-end))]/40 flex items-center justify-center p-6">
+      {/* Ad BTF no topo da Q3 - fora do container estreito */}
+      {questionNumber === 3 && <BTFAd />}
+      
       <div className="max-w-md w-full animate-slide-up">
-        
-        {/* Ad BTF no topo da Q3 */}
-        {questionNumber === 3 && <BTFAd />}
-        
         {/* Progress */}
         <ProgressDots total={totalQuestions} current={questionNumber} />
 

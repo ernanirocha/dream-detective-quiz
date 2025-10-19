@@ -46,13 +46,15 @@ export default function AdSlot({
       if (!unit) return;
       el.setAttribute("data-adunitcode", unit);
       initialized.current = true;
+      console.log(`[AdSlot] Expondo slot: ${unit}`);
 
-      // Timeout para colapsar se nenhum criativo aparecer em 2s
+      // Timeout para colapsar se nenhum criativo aparecer em 3s
       collapseTimeout.current = window.setTimeout(() => {
         if (el && !el.firstElementChild) {
+          console.log(`[AdSlot] Colapsando slot vazio: ${unit}`);
           el.classList.add("ad-empty");
         }
-      }, 2000);
+      }, 3000);
     };
 
     // HERO: monta na hora
@@ -79,6 +81,7 @@ export default function AdSlot({
       };
       
       if (el.firstElementChild) {
+        console.log(`[AdSlot] Criativo injetado`);
         applyCenter(el.firstElementChild);
         
         // Cancelar timeout de colapso se criativo apareceu
@@ -86,6 +89,9 @@ export default function AdSlot({
           clearTimeout(collapseTimeout.current);
           collapseTimeout.current = null;
         }
+        
+        // Remover ad-empty se criativo chegar depois do timeout
+        el.classList.remove("ad-empty");
       }
     });
     mo.observe(el, { childList: true, subtree: true });
