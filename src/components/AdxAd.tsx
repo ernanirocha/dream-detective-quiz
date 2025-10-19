@@ -66,10 +66,16 @@ export default function AdxAd({
       {isVisible && (
         <>
           {/* Mobile ad */}
-          <div className="md:hidden" data-adUnitCode={mobileCode} />
+          <div 
+            className="md:hidden w-full flex justify-center min-h-[120px]" 
+            data-adunitcode={mobileCode} 
+          />
 
           {/* Desktop ad */}
-          <div className="hidden md:block" data-adUnitCode={desktopCode} />
+          <div 
+            className="hidden md:flex md:justify-center md:w-full md:min-h-[120px]" 
+            data-adunitcode={desktopCode} 
+          />
         </>
       )}
     </div>
