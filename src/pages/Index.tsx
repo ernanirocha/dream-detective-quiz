@@ -27,10 +27,10 @@ const Index = () => {
     if (currentQuestionIndex < questions.length - 1) {
       const nextIndex = currentQuestionIndex + 1;
       setCurrentQuestionIndex(nextIndex);
-      
+
       // Mostra anúncio BTF após a 3ª pergunta (índice 3 = 4ª pergunta iniciando)
-      if (nextIndex >= 3 && !showAdAfterQ2) {
-        setShowAdAfterQ2(true);
+      if (nextIndex >= 3 && !showAdAfterQ3) {
+        setShowAdAfterQ3(true);
       }
     } else {
       setCurrentScreen("results");
@@ -52,7 +52,7 @@ const Index = () => {
   return (
     <>
       {currentScreen === "start" && <StartScreen onStart={handleStart} />}
-      
+
       {currentScreen === "question" && (
         <>
           <Question
@@ -64,14 +64,14 @@ const Index = () => {
             onBack={handleBack}
             globalFeedback={questions[currentQuestionIndex].globalFeedback}
           />
-          
+
           {/* Ad BTF após 2ª pergunta */}
           <div style={{ margin: "16px 0" }}>
             <AfterSecondQuestionAd show={showAdAfterQ2} />
           </div>
         </>
       )}
-      
+
       {currentScreen === "results" && <Results profile={getResultProfile()} />}
     </>
   );
