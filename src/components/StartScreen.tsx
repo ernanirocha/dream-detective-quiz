@@ -4,12 +4,12 @@ import QuizButton from "./QuizButton";
 import HeroAd from "./HeroAd";
 
 const SocialProofBar = ({ onClick }: { onClick: () => void }) => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1200);
   const target = 1859;
 
   useEffect(() => {
     const tickMs = 2000;
-    let current = 0;
+    let current = 1200;
 
     // Fases: 3 em 3 (4 vezes) -> 5 em 5 (6 vezes) -> 1 em 1 (até o alvo)
     const phases = [
