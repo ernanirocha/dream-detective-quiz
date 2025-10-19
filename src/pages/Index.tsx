@@ -55,6 +55,10 @@ const Index = () => {
 
       {currentScreen === "question" && (
         <>
+          {/* Ad BTF no topo da 3ª pergunta */}
+          <div className="my-4">
+            <AfterSecondQuestionAd show={showAdAfterQ2} />
+          </div>
           <Question
             questionNumber={currentQuestionIndex + 1}
             totalQuestions={questions.length}
@@ -64,11 +68,6 @@ const Index = () => {
             onBack={handleBack}
             globalFeedback={questions[currentQuestionIndex].globalFeedback}
           />
-
-          {/* Ad BTF após 2ª pergunta */}
-          <div style={{ margin: "16px 0" }}>
-            <AfterSecondQuestionAd show={showAdAfterQ2} />
-          </div>
         </>
       )}
 
