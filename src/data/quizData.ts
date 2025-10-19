@@ -41,32 +41,6 @@ export const questions: QuestionData[] = [
   },
   {
     id: 2,
-    title: "Há quanto tempo você sente isso?",
-    options: [
-      {
-        id: 1,
-        text: "Semanas.",
-        feedback:
-          "Bom momento para intervir cedo. Combine 10 minutos de prática respiratória e cortes leves em cafeína à tarde. Técnicas acessíveis: https://cleoloiolatp.com/app-de-meditacao-gratis/"
-      },
-      {
-        id: 2,
-        text: "Meses.",
-        feedback:
-          "Quando persiste por meses, vale padronizar horário de sono, revisar ambiente e avaliar nutrientes. Veja D3 e bem-estar: https://cleoloiolatp.com/vitamina-d3-e-ansiedade/ e quarto ideal: https://cleoloiolatp.com/higiene-do-sono-quarto-ideal/"
-      },
-      {
-        id: 3,
-        text: "Já virou rotina.",
-        feedback:
-          "Rotina crônica merece plano estruturado. Considere acompanhamento profissional e um protocolo simples de 2 semanas com metas objetivas. Como viabilizar pelo convênio: https://cleoloiolatp.com/tratar-ansiedade-com-seu-plano-de-saude/ e formas de reembolso: https://cleoloiolatp.com/reembolso-do-plano-de-saude/"
-      }
-    ],
-    globalFeedback:
-      "Quanto mais tempo o sono fica instável, maior a chance de ansiedade noturna e cansaço diurno. O caminho prático combina ritual consistente, ambiente adequado e avaliação de gatilhos. Comece aqui: https://cleoloiolatp.com/como-aliviar-ansiedade-a-noite/ e aqui: https://cleoloiolatp.com/rotina-antes-de-dormir/"
-  },
-  {
-    id: 3,
     title: "O que você já tentou pra dormir melhor ou reduzir a ansiedade?",
     options: [
       {
@@ -90,6 +64,32 @@ export const questions: QuestionData[] = [
     ],
     globalFeedback:
       "Muitas pessoas relatam melhora quando combinam 1 hábito mental, 1 corporal e 1 ajuste ambiental. Monte seu trio de base hoje: meditação breve, relaxamento muscular e quarto escuro e fresco. Recursos: https://cleoloiolatp.com/app-de-meditacao-gratis/ e https://cleoloiolatp.com/higiene-do-sono-quarto-ideal/"
+  },
+  {
+    id: 3,
+    title: "Há quanto tempo você sente isso?",
+    options: [
+      {
+        id: 1,
+        text: "Semanas.",
+        feedback:
+          "Bom momento para intervir cedo. Combine 10 minutos de prática respiratória e cortes leves em cafeína à tarde. Técnicas acessíveis: https://cleoloiolatp.com/app-de-meditacao-gratis/"
+      },
+      {
+        id: 2,
+        text: "Meses.",
+        feedback:
+          "Quando persiste por meses, vale padronizar horário de sono, revisar ambiente e avaliar nutrientes. Veja D3 e bem-estar: https://cleoloiolatp.com/vitamina-d3-e-ansiedade/ e quarto ideal: https://cleoloiolatp.com/higiene-do-sono-quarto-ideal/"
+      },
+      {
+        id: 3,
+        text: "Já virou rotina.",
+        feedback:
+          "Rotina crônica merece plano estruturado. Considere acompanhamento profissional e um protocolo simples de 2 semanas com metas objetivas. Como viabilizar pelo convênio: https://cleoloiolatp.com/tratar-ansiedade-com-seu-plano-de-saude/ e formas de reembolso: https://cleoloiolatp.com/reembolso-do-plano-de-saude/"
+      }
+    ],
+    globalFeedback:
+      "Quanto mais tempo o sono fica instável, maior a chance de ansiedade noturna e cansaço diurno. O caminho prático combina ritual consistente, ambiente adequado e avaliação de gatilhos. Comece aqui: https://cleoloiolatp.com/como-aliviar-ansiedade-a-noite/ e aqui: https://cleoloiolatp.com/rotina-antes-de-dormir/"
   },
   {
     id: 4,
