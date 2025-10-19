@@ -2,7 +2,6 @@ import { useState } from "react";
 import StartScreen from "@/components/StartScreen";
 import Question from "@/components/Question";
 import Results from "@/components/Results";
-import AfterSecondQuestionAd from "@/components/AfterSecondQuestionAd";
 import { questions, resultProfiles } from "@/data/quizData";
 
 type Screen = "start" | "question" | "results";
@@ -78,7 +77,6 @@ const Index = () => {
           isPopupOpen={isPopupOpen}
           currentFeedback={currentFeedback}
           onPopupClose={handlePopupClose}
-          beforeOptions={currentQuestionIndex === 2 ? <AfterSecondQuestionAd show /> : null}
         />
       )}
 

@@ -19,7 +19,6 @@ interface QuestionProps {
   isPopupOpen: boolean;
   currentFeedback: string;
   onPopupClose: () => void;
-  beforeOptions?: React.ReactNode;
 }
 
 const Question = ({ 
@@ -32,8 +31,7 @@ const Question = ({
   globalFeedback,
   isPopupOpen,
   currentFeedback,
-  onPopupClose,
-  beforeOptions
+  onPopupClose
 }: QuestionProps) => {
   const handleOptionClick = (option: QuestionOption) => {
     const feedback = option.feedback || globalFeedback || "";
@@ -55,13 +53,6 @@ const Question = ({
         <h2 className="text-[22px] font-bold text-foreground mb-8 text-center leading-tight">
           {title}
         </h2>
-
-        {/* Before options slot */}
-        {beforeOptions && (
-          <div className="mb-6">
-            {beforeOptions}
-          </div>
-        )}
 
         {/* Options */}
         <div className="space-y-4">
