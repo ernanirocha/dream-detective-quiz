@@ -1,14 +1,13 @@
-import AdSlot from "./AdSlot";
-import { UNITS, DESKTOP_BREAKPOINT } from "../ads/units";
+import AdxAd from "./AdxAd";
+import { UNITS } from "../ads/units";
 
 export default function HeroAd() {
   return (
-    <AdSlot
-      unitMobile={UNITS.heroMobile}
-      unitDesktop={UNITS.heroDesktop}
-      reveal="immediate"
-      className="ad-hero"
-      breakpoint={DESKTOP_BREAKPOINT}
+    <AdxAd
+      mobileCode={UNITS.heroMobile}
+      desktopCode={UNITS.heroDesktop}
+      style={{ display: "block", minHeight: 90, margin: "12px 0" }}
     />
   );
 }
+
