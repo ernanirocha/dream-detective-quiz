@@ -1,6 +1,8 @@
+import { useState } from "react";
 import ProgressDots from "./ProgressDots";
 import QuizButton from "./QuizButton";
 import CloudPopup from "./CloudPopup";
+import AdxAd from "./AdxAd";
 
 interface QuestionOption {
   id: number;
@@ -13,12 +15,9 @@ interface QuestionProps {
   totalQuestions: number;
   title: string;
   options: QuestionOption[];
-  onAnswer: (optionId: number, feedback: string) => void;
+  onAnswer: (optionId: number) => void;
   onBack?: () => void;
   globalFeedback?: string;
-  isPopupOpen: boolean;
-  currentFeedback: string;
-  onPopupClose: () => void;
 }
 
 const Question = ({ 
@@ -28,19 +27,34 @@ const Question = ({
   options, 
   onAnswer,
   onBack,
-  globalFeedback,
-  isPopupOpen,
-  currentFeedback,
-  onPopupClose
+  globalFeedback 
 }: QuestionProps) => {
+  const [showPopup, setShowPopup] = useState(false);
+  const [currentFeedback, setCurrentFeedback] = useState("");
+  const [selectedOption, setSelectedOption] = useState<number | null>(null);
+
   const handleOptionClick = (option: QuestionOption) => {
+    setSelectedOption(option.id);
     const feedback = option.feedback || globalFeedback || "";
-    onAnswer(option.id, feedback);
+    setCurrentFeedback(feedback);
+    setShowPopup(true);
+  };
+
+  const handlePopupClose = () => {
+    setShowPopup(false);
+    if (selectedOption !== null) {
+      setTimeout(() => onAnswer(selectedOption), 300);
+    }
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--night-gradient-start))]/40 to-[hsl(var(--night-gradient-end))]/40 flex items-center justify-center p-6">
       <div className="max-w-md w-full animate-slide-up">
+        {/* ADX na pergunta 2 */}
+        {questionNumber === 2 && (
+          <AdxAd />
+        )}
+        
         {/* Progress */}
         <ProgressDots total={totalQuestions} current={questionNumber} />
 
@@ -81,10 +95,10 @@ const Question = ({
       </div>
 
       {/* Cloud popup feedback */}
-      {isPopupOpen && (
+      {showPopup && (
         <CloudPopup
           message={currentFeedback}
-          onClose={onPopupClose}
+          onClose={handlePopupClose}
         />
       )}
     </div>

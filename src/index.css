@@ -95,12 +95,6 @@ All colors MUST be HSL.
   }
 }
 
-/* Colapsa se vazio após timeout */
-.ad-empty {
-  display: none !important;
-  min-height: 0 !important;
-}
-
 @layer base {
   * {
     @apply border-border;

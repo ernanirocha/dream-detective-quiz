@@ -20,7 +20,6 @@ export default function AdSlot({
   const ref = useRef<HTMLDivElement | null>(null);
   const initialized = useRef(false);
   const chosen = useRef<string | null>(null);
-  const collapseTimeout = useRef<number | null>(null);
 
   useEffect(() => {
     const el = ref.current;
@@ -44,18 +43,8 @@ export default function AdSlot({
       if (initialized.current) return;
       const unit = pick();
       if (!unit) return;
-      el.setAttribute("data-adUnitCode", unit);
-      el.setAttribute("data-adunitcode", unit); // compatibilidade extra
+      el.setAttribute("data-adunitcode", unit);
       initialized.current = true;
-      console.log(`[AdSlot] Expondo slot: ${unit}`);
-
-      // Timeout para colapsar se nenhum criativo aparecer em 3s
-      collapseTimeout.current = window.setTimeout(() => {
-        if (el && !el.firstElementChild) {
-          console.log(`[AdSlot] Colapsando slot vazio: ${unit}`);
-          el.classList.add("ad-empty");
-        }
-      }, 3000);
     };
 
     // HERO: monta na hora
@@ -70,38 +59,14 @@ export default function AdSlot({
 
     // CENTRALIZAÇÃO À PROVA DE FALHAS (MutationObserver)
     const mo = new MutationObserver(() => {
-      // Centraliza TODOS os filhos e netos (não só o primeiro)
-      const applyCenter = (node: Element) => {
-        if (node instanceof HTMLElement) {
-          node.style.display = "block";
-          node.style.marginLeft = "auto";
-          node.style.marginRight = "auto";
-        }
-        // Aplica recursivamente aos filhos
-        Array.from(node.children).forEach(applyCenter);
-      };
-      
-      if (el.firstElementChild) {
-        console.log(`[AdSlot] Criativo injetado`);
-        applyCenter(el.firstElementChild);
-        
-        // Cancelar timeout de colapso se criativo apareceu
-        if (collapseTimeout.current) {
-          clearTimeout(collapseTimeout.current);
-          collapseTimeout.current = null;
-        }
-        
-        // Remover ad-empty se criativo chegar depois do timeout
-        el.classList.remove("ad-empty");
-      }
+      const child = el.firstElementChild as HTMLElement | null;
+      if (!child) return;
+      child.style.display = "block";
+      child.style.marginLeft = "auto";
+      child.style.marginRight = "auto";
     });
-    mo.observe(el, { childList: true, subtree: true });
-    return () => {
-      mo.disconnect();
-      if (collapseTimeout.current) {
-        clearTimeout(collapseTimeout.current);
-      }
-    };
+    mo.observe(el, { childList: true });
+    return () => mo.disconnect();
   }, [flag, unitMobile, unitDesktop, reveal, className, breakpoint]);
 
   return (

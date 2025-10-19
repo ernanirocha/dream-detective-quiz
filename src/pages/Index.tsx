@@ -2,6 +2,7 @@ import { useState } from "react";
 import StartScreen from "@/components/StartScreen";
 import Question from "@/components/Question";
 import Results from "@/components/Results";
+import AfterSecondQuestionAd from "@/components/AfterSecondQuestionAd";
 import { questions, resultProfiles } from "@/data/quizData";
 
 type Screen = "start" | "question" | "results";
@@ -10,9 +11,7 @@ const Index = () => {
   const [currentScreen, setCurrentScreen] = useState<Screen>("start");
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [currentFeedback, setCurrentFeedback] = useState("");
-  const [pendingQuestionIndex, setPendingQuestionIndex] = useState<number | null>(null);
+  const [showAdAfterQ2, setShowAdAfterQ2] = useState(false);
 
   const handleStart = () => {
     setCurrentScreen("question");
@@ -20,29 +19,19 @@ const Index = () => {
     setAnswers([]);
   };
 
-  const handleAnswer = (optionId: number, feedback: string) => {
+  const handleAnswer = (optionId: number) => {
     const newAnswers = [...answers];
     newAnswers[currentQuestionIndex] = optionId;
     setAnswers(newAnswers);
 
-    // Abrir popup com feedback
-    setCurrentFeedback(feedback);
-    setIsPopupOpen(true);
-
-    // Guardar próximo índice
     if (currentQuestionIndex < questions.length - 1) {
-      setPendingQuestionIndex(currentQuestionIndex + 1);
-    } else {
-      setPendingQuestionIndex(null);
-    }
-  };
-
-  const handlePopupClose = () => {
-    setIsPopupOpen(false);
-
-    if (pendingQuestionIndex !== null) {
-      setCurrentQuestionIndex(pendingQuestionIndex);
-      setPendingQuestionIndex(null);
+      const nextIndex = currentQuestionIndex + 1;
+      setCurrentQuestionIndex(nextIndex);
+      
+      // Mostra anúncio BTF após a 2ª pergunta (índice 2 = 3ª pergunta iniciando)
+      if (nextIndex >= 2 && !showAdAfterQ2) {
+        setShowAdAfterQ2(true);
+      }
     } else {
       setCurrentScreen("results");
     }
@@ -63,23 +52,26 @@ const Index = () => {
   return (
     <>
       {currentScreen === "start" && <StartScreen onStart={handleStart} />}
-
+      
       {currentScreen === "question" && (
-        <Question
-          key={currentQuestionIndex}
-          questionNumber={currentQuestionIndex + 1}
-          totalQuestions={questions.length}
-          title={questions[currentQuestionIndex].title}
-          options={questions[currentQuestionIndex].options}
-          onAnswer={handleAnswer}
-          onBack={handleBack}
-          globalFeedback={questions[currentQuestionIndex].globalFeedback}
-          isPopupOpen={isPopupOpen}
-          currentFeedback={currentFeedback}
-          onPopupClose={handlePopupClose}
-        />
+        <>
+          <Question
+            questionNumber={currentQuestionIndex + 1}
+            totalQuestions={questions.length}
+            title={questions[currentQuestionIndex].title}
+            options={questions[currentQuestionIndex].options}
+            onAnswer={handleAnswer}
+            onBack={handleBack}
+            globalFeedback={questions[currentQuestionIndex].globalFeedback}
+          />
+          
+          {/* Ad BTF após 2ª pergunta */}
+          <div style={{ margin: "16px 0" }}>
+            <AfterSecondQuestionAd show={showAdAfterQ2} />
+          </div>
+        </>
       )}
-
+      
       {currentScreen === "results" && <Results profile={getResultProfile()} />}
     </>
   );
