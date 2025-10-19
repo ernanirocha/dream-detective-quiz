@@ -62,14 +62,14 @@ export default function AdxAd({
 
   // Renderiza ambos os blocos, mas exibe apenas um baseado em media query CSS
   return (
-    <div ref={containerRef} style={style} className="flex justify-center items-center w-full">
+    <div ref={containerRef} className="ad-slot" style={style}>
       {isVisible && (
         <>
           {/* Mobile ad */}
-          <div className="flex justify-center items-center w-full md:hidden" data-adUnitCode={mobileCode} />
+          <div className="md:hidden" data-adUnitCode={mobileCode} />
 
           {/* Desktop ad */}
-          <div className="hidden md:flex md:justify-center md:items-center md:w-full" data-adUnitCode={desktopCode} />
+          <div className="hidden md:block" data-adUnitCode={desktopCode} />
         </>
       )}
     </div>
