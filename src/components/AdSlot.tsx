@@ -44,7 +44,8 @@ export default function AdSlot({
       if (initialized.current) return;
       const unit = pick();
       if (!unit) return;
-      el.setAttribute("data-adunitcode", unit);
+      el.setAttribute("data-adUnitCode", unit);
+      el.setAttribute("data-adunitcode", unit); // compatibilidade extra
       initialized.current = true;
       console.log(`[AdSlot] Expondo slot: ${unit}`);
 

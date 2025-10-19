@@ -40,9 +40,13 @@ const Question = ({
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--night-gradient-start))]/40 to-[hsl(var(--night-gradient-end))]/40 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--night-gradient-start))]/40 to-[hsl(var(--night-gradient-end))]/40 flex flex-col items-center justify-start p-6">
       {/* Ad BTF no topo da Q3 - fora do container estreito */}
-      {questionNumber === 3 && <BTFAd />}
+      {questionNumber === 3 && (
+        <div className="w-full">
+          <BTFAd />
+        </div>
+      )}
       
       <div className="max-w-md w-full animate-slide-up">
         {/* Progress */}

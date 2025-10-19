@@ -66,6 +66,7 @@ const Index = () => {
 
       {currentScreen === "question" && (
         <Question
+          key={currentQuestionIndex}
           questionNumber={currentQuestionIndex + 1}
           totalQuestions={questions.length}
           title={questions[currentQuestionIndex].title}
