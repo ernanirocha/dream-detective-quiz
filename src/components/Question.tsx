@@ -1,6 +1,7 @@
 import ProgressDots from "./ProgressDots";
 import QuizButton from "./QuizButton";
 import CloudPopup from "./CloudPopup";
+import BTFAd from "./BTFAd";
 
 interface QuestionOption {
   id: number;
@@ -19,7 +20,6 @@ interface QuestionProps {
   isPopupOpen: boolean;
   currentFeedback: string;
   onPopupClose: () => void;
-  adSlot?: React.ReactNode;
 }
 
 const Question = ({ 
@@ -32,8 +32,7 @@ const Question = ({
   globalFeedback,
   isPopupOpen,
   currentFeedback,
-  onPopupClose,
-  adSlot
+  onPopupClose
 }: QuestionProps) => {
   const handleOptionClick = (option: QuestionOption) => {
     const feedback = option.feedback || globalFeedback || "";
@@ -42,9 +41,9 @@ const Question = ({
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--night-gradient-start))]/40 to-[hsl(var(--night-gradient-end))]/40 flex flex-col items-center justify-center p-6">
-      {adSlot && (
+      {questionNumber === 3 && (
         <div className="w-full flex justify-center mb-6">
-          {adSlot}
+          <BTFAd />
         </div>
       )}
 
