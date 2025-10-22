@@ -5,7 +5,7 @@ export const UNITS = {
 
   // Depois da 2ª pergunta (anúncio #2)
   btfMobile: "quizmob",
-  btfDesktop: "cleoloiolatp_desk_anchor",
+  btfDesktop: "cleoloiolatp_desk_topo",
 };
 
 export const DESKTOP_BREAKPOINT = 980;
