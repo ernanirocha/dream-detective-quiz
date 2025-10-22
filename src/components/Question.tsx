@@ -52,7 +52,6 @@ const Question = ({
       <div className="max-w-md w-full animate-slide-up">
         {/* ADX na pergunta 1 a 5 */}
         {questionNumber >= 1 && <AdxAd />}
-        )}
         
         {/* Progress */}
         <ProgressDots total={totalQuestions} current={questionNumber} />
