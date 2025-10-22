@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ProgressDots from "./ProgressDots";
 import QuizButton from "./QuizButton";
 import CloudPopup from "./CloudPopup";
@@ -33,6 +33,11 @@ const Question = ({
   const [currentFeedback, setCurrentFeedback] = useState("");
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
 
+  // Scroll para o topo quando a pergunta mudar
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [questionNumber]);
+
   const handleOptionClick = (option: QuestionOption) => {
     setSelectedOption(option.id);
     const feedback = option.feedback || globalFeedback || "";
@@ -48,8 +53,8 @@ const Question = ({
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--night-gradient-start))]/40 to-[hsl(var(--night-gradient-end))]/40 flex items-start justify-center pt-4 px-6 pb-6">
-      <div className="max-w-md w-full animate-slide-up">
+    <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--night-gradient-start))]/40 to-[hsl(var(--night-gradient-end))]/40 flex items-start justify-center p-6">
+      <div className="max-w-md w-full animate-slide-up space-y-4">
         {/* ADX na pergunta 2 */}
         {questionNumber >= 1 && <AdxAd />}
 
