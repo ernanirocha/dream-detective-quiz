@@ -54,7 +54,7 @@ const Question = ({
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--night-gradient-start))]/40 to-[hsl(var(--night-gradient-end))]/40 flex items-start justify-center p-6">
-      <div className="max-w-md w-full animate-slide-up space-y-4">
+      <div className="max-w-md w-full animate-slide-up space-y-1">
         {/* ADX na pergunta 2 */}
         {questionNumber >= 1 && <AdxAd />}
 
@@ -70,7 +70,7 @@ const Question = ({
         <h2 className="text-[22px] font-bold text-foreground mb-8 text-center leading-tight">{title}</h2>
 
         {/* Options */}
-        <div className="space-y-4">
+        <div className="space-y-1">
           {options.map((option) => (
             <QuizButton key={option.id} variant="option" gtmId={option.id} onClick={() => handleOptionClick(option)}>
               <span className="text-primary mr-2 font-bold">{option.id}️⃣</span>
