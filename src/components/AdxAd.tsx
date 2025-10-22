@@ -7,7 +7,7 @@ type Props = {
 };
 
 export default function AdxAd({
-  mobileCode = "cleoloiolatp_mob_topo",
+  mobileCode = "quizmob",
   desktopCode = "cleoloiolatp_desk_topo",
   style = { display: "block", minHeight: 250, margin: "12px 0" },
 }: Props) {
