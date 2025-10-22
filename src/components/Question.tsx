@@ -48,7 +48,7 @@ const Question = ({
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--night-gradient-start))]/40 to-[hsl(var(--night-gradient-end))]/40 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--night-gradient-start))]/40 to-[hsl(var(--night-gradient-end))]/40 flex items-start justify-center p-6 pt-12">
       <div className="max-w-md w-full animate-slide-up">
         {/* ADX na pergunta 2 */}
         {questionNumber >= 1 && <AdxAd />}
