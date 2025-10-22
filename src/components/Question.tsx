@@ -20,14 +20,14 @@ interface QuestionProps {
   globalFeedback?: string;
 }
 
-const Question = ({
-  questionNumber,
-  totalQuestions,
-  title,
-  options,
+const Question = ({ 
+  questionNumber, 
+  totalQuestions, 
+  title, 
+  options, 
   onAnswer,
   onBack,
-  globalFeedback,
+  globalFeedback 
 }: QuestionProps) => {
   const [showPopup, setShowPopup] = useState(false);
   const [currentFeedback, setCurrentFeedback] = useState("");
@@ -48,11 +48,12 @@ const Question = ({
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--night-gradient-start))]/40 to-[hsl(var(--night-gradient-end))]/40 flex flex-col items-center p-6">
+    <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--night-gradient-start))]/40 to-[hsl(var(--night-gradient-end))]/40 flex items-center justify-center p-6">
       <div className="max-w-md w-full animate-slide-up">
-        {/* ADX na pergunta 2 */}
-        {questionNumber === 2 && <AdxAd />}
-
+        {/* ADX na pergunta 1 a 5 */}
+        {questionNumber >= 1 && <AdxAd />}
+        )}
+        
         {/* Progress */}
         <ProgressDots total={totalQuestions} current={questionNumber} />
 
@@ -62,12 +63,19 @@ const Question = ({
         </p>
 
         {/* Question title */}
-        <h2 className="text-[22px] font-bold text-foreground mb-8 text-center leading-tight">{title}</h2>
+        <h2 className="text-[22px] font-bold text-foreground mb-8 text-center leading-tight">
+          {title}
+        </h2>
 
         {/* Options */}
         <div className="space-y-4">
           {options.map((option) => (
-            <QuizButton key={option.id} variant="option" gtmId={option.id} onClick={() => handleOptionClick(option)}>
+            <QuizButton
+              key={option.id}
+              variant="option"
+              gtmId={option.id}
+              onClick={() => handleOptionClick(option)}
+            >
               <span className="text-primary mr-2 font-bold">{option.id}️⃣</span>
               {option.text}
             </QuizButton>
@@ -86,7 +94,12 @@ const Question = ({
       </div>
 
       {/* Cloud popup feedback */}
-      {showPopup && <CloudPopup message={currentFeedback} onClose={handlePopupClose} />}
+      {showPopup && (
+        <CloudPopup
+          message={currentFeedback}
+          onClose={handlePopupClose}
+        />
+      )}
     </div>
   );
 };
