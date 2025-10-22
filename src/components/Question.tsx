@@ -35,7 +35,7 @@ const Question = ({
 
   // Scroll para o topo quando a pergunta mudar
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [questionNumber]);
 
   const handleOptionClick = (option: QuestionOption) => {
@@ -53,24 +53,26 @@ const Question = ({
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--night-gradient-start))]/40 to-[hsl(var(--night-gradient-end))]/40 flex items-start justify-center p-6">
-      <div className="max-w-md w-full animate-slide-up space-y-1">
+    <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--night-gradient-start))]/40 to-[hsl(var(--night-gradient-end))]/40 flex items-start justify-center px-6 pt-3 pb-6">
+      <div className="max-w-md w-full animate-slide-up">
         {/* ADX na pergunta 2 */}
         {questionNumber >= 1 && <AdxAd />}
 
         {/* Progress */}
-        <ProgressDots total={totalQuestions} current={questionNumber} />
+        <div className="mt-3">
+          <ProgressDots total={totalQuestions} current={questionNumber} />
+        </div>
 
         {/* Question counter */}
-        <p className="text-sm text-muted-foreground text-center mb-2">
+        <p className="text-sm text-muted-foreground text-center mb-2 mt-3">
           Pergunta {questionNumber} de {totalQuestions}
         </p>
 
         {/* Question title */}
-        <h2 className="text-[22px] font-bold text-foreground mb-8 text-center leading-tight">{title}</h2>
+        <h2 className="text-[22px] font-bold text-foreground mb-6 text-center leading-tight">{title}</h2>
 
         {/* Options */}
-        <div className="space-y-1">
+        <div className="space-y-4">
           {options.map((option) => (
             <QuizButton key={option.id} variant="option" gtmId={option.id} onClick={() => handleOptionClick(option)}>
               <span className="text-primary mr-2 font-bold">{option.id}️⃣</span>
