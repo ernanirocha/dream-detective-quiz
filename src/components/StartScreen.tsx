@@ -64,11 +64,10 @@ const SocialProofBar = ({ onClick }: { onClick: () => void }) => {
           boxShadow: "0 0 0 0 rgba(34, 197, 94, 0.6)",
         }}
       />
-      <span>Atualizado hoje</span>
+      <span>Resultado Imediato</span>
       <span className="opacity-50">•</span>
       <span>
-        <strong className="font-extrabold">{count.toLocaleString("pt-BR")}</strong> pessoas fizeram a avaliação de sono
-        esta semana
+        <strong 🎯 className="font-extrabold">{count.toLocaleString("pt-BR")}</strong> já identificaram seus bloqueios do sono
       </span>
 
       <style>{`
