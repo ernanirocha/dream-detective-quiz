@@ -108,7 +108,7 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
       <div className="relative z-10 max-w-md w-full animate-fade-in">
         {/* Title */}
         <h1 className="text-[22px] font-bold text-foreground text-center mb-4 leading-tight">
-          Insônia e ansiedade te impedem de dormir? Entenda o motivo
+          Como dormir melhor ainda Hoje?
         </h1>
 
         {/* First paragraph */}
