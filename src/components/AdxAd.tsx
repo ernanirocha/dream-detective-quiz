@@ -9,7 +9,7 @@ type Props = {
 export default function AdxAd({
   mobileCode = "quizmob",
   desktopCode = "cleoloiolatp_desk_topo",
-  style = { display: "block", minHeight: 250, margin: "12px 0" },
+  style = { display: "block", minHeight: 0, margin: "4px 0" },
 }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const slotRef = useRef<HTMLDivElement>(null); // ⬅️ novo
