@@ -107,9 +107,10 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
       {/* Content */}
       <div className="relative z-10 max-w-md w-full animate-fade-in">
         {/* Title */}
-        <h1 className="text-[22px] font-bold text-foreground text-center mb-4 leading-tight">
-          Como dormir melhor ainda Hoje?
-        </h1>
+        <h1 className="text-[26px] font-bold text-foreground text-center mb-4 leading-tight">Como dormir melhor?</h1>
+
+        {/* Social Proof Bar */}
+        <SocialProofBar onClick={onStart} />
 
         {/* First paragraph */}
         <p className="text-[16px] text-muted-foreground text-center mb-4 leading-relaxed">
@@ -119,9 +120,6 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
 
         {/* Hero Ad - ATF (centralizado) */}
         <HeroAd />
-
-        {/* Social Proof Bar */}
-        <SocialProofBar onClick={onStart} />
 
         {/* CTA Button */}
         <QuizButton variant="primary" onClick={onStart}>
