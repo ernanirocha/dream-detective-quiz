@@ -67,7 +67,8 @@ const SocialProofBar = ({ onClick }: { onClick: () => void }) => {
       <span>Resultado Imediato</span>
       <span className="opacity-50">•</span>
       <span>
-        <strong 🎯 className="font-extrabold">{count.toLocaleString("pt-BR")}</strong> já identificaram seus bloqueios do sono
+        🎯<strong className="font-extrabold">{count.toLocaleString("pt-BR")}</strong> já identificaram seus bloqueios do
+        sono
       </span>
 
       <style>{`
