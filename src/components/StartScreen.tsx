@@ -107,19 +107,20 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
       {/* Content */}
       <div className="relative z-10 max-w-md w-full animate-fade-in">
         {/* Title */}
-        <h1 className="text-[28px] font-bold text-foreground text-center mb-4 leading-tight">Como dormir melhor?</h1>
-
-        {/* Social Proof Bar */}
-        <SocialProofBar onClick={onStart} />
+        <h1 className="text-[22px] font-bold text-foreground text-center mb-4 leading-tight">
+          Como dormir melhor ainda Hoje?
+        </h1>
 
         {/* First paragraph */}
-        <p className="text-[16px] text-muted-foreground text-center mb-4 leading-relaxed">
-          Insônia recorrente? Identifique em 45 segundos padrões do seu sono e receba orientações simples para testar
-          hoje. Sem cadastro.
+        <p className="text-[18px] text-muted-foreground text-center mb-4 leading-relaxed">
+          Insônia recorrente? Identifique padrões e receba orientações simples para testar ainda hoje.
         </p>
 
         {/* Hero Ad - ATF (centralizado) */}
         <HeroAd />
+
+        {/* Social Proof Bar */}
+        <SocialProofBar onClick={onStart} />
 
         {/* CTA Button */}
         <QuizButton variant="primary" onClick={onStart}>
@@ -148,17 +149,17 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
 
         {/* FAQs */}
         <div className="w-full mt-8">
-          <h2 className="text-[18px] font-semibold text-foreground text-center mb-6">
+          <h2 className="text-[22px] font-semibold text-foreground text-center mb-6">
             Perguntas Frequentes Sobre Dormir Melhor e a Ansiedade
           </h2>
 
           <div className="space-y-3">
             <details className="group bg-card rounded-lg border border-border overflow-hidden">
-              <summary className="cursor-pointer px-4 py-4 text-[15px] font-medium text-foreground hover:bg-secondary/50 transition-colors list-none flex justify-between items-center">
+              <summary className="cursor-pointer px-4 py-4 text-[16px] font-medium text-foreground hover:bg-secondary/50 transition-colors list-none flex justify-between items-center">
                 <span>A ansiedade pode realmente afetar a qualidade do sono?</span>
                 <span className="text-muted-foreground group-open:rotate-180 transition-transform">+</span>
               </summary>
-              <div className="px-4 py-3 text-[14px] text-muted-foreground border-t border-border">
+              <div className="px-4 py-3 text-[16px] text-muted-foreground border-t border-border">
                 Sim. A ansiedade aumenta a atividade do sistema de alerta, o corpo libera adrenalina e cortisol, o que
                 dificulta adormecer e mantém despertares. Se piora à noite, veja{" "}
                 <a
@@ -174,11 +175,11 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
             </details>
 
             <details className="group bg-card rounded-lg border border-border overflow-hidden">
-              <summary className="cursor-pointer px-4 py-4 text-[15px] font-medium text-foreground hover:bg-secondary/50 transition-colors list-none flex justify-between items-center">
+              <summary className="cursor-pointer px-4 py-4 text-[16px] font-medium text-foreground hover:bg-secondary/50 transition-colors list-none flex justify-between items-center">
                 <span>Por que durmo a noite inteira mas ainda acordo cansado?</span>
                 <span className="text-muted-foreground group-open:rotate-180 transition-transform">+</span>
               </summary>
-              <div className="px-4 py-3 text-[14px] text-muted-foreground border-t border-border">
+              <div className="px-4 py-3 text-[16px] text-muted-foreground border-t border-border">
                 Pode haver pouco sono profundo, microdespertares por luz, ruído ou álcool, além de horários irregulares.
                 Ajuste ambiente e rotina. Guia prático em{" "}
                 <a
@@ -194,11 +195,11 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
             </details>
 
             <details className="group bg-card rounded-lg border border-border overflow-hidden">
-              <summary className="cursor-pointer px-4 py-4 text-[15px] font-medium text-foreground hover:bg-secondary/50 transition-colors list-none flex justify-between items-center">
+              <summary className="cursor-pointer px-4 py-4 text-[16px] font-medium text-foreground hover:bg-secondary/50 transition-colors list-none flex justify-between items-center">
                 <span>Quanto tempo antes devo desligar telas para não atrapalhar o sono?</span>
                 <span className="text-muted-foreground group-open:rotate-180 transition-transform">+</span>
               </summary>
-              <div className="px-4 py-3 text-[14px] text-muted-foreground border-t border-border">
+              <div className="px-4 py-3 text-[16px] text-muted-foreground border-t border-border">
                 Desligue 60 a 90 minutos antes de deitar. Se precisar usar, aplique filtro noturno e brilho baixo e
                 evite conteúdos ativadores. Monte um ritual simples com este{" "}
                 <a
@@ -214,11 +215,11 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
             </details>
 
             <details className="group bg-card rounded-lg border border-border overflow-hidden">
-              <summary className="cursor-pointer px-4 py-4 text-[15px] font-medium text-foreground hover:bg-secondary/50 transition-colors list-none flex justify-between items-center">
+              <summary className="cursor-pointer px-4 py-4 text-[16px] font-medium text-foreground hover:bg-secondary/50 transition-colors list-none flex justify-between items-center">
                 <span>O que fazer na hora se eu travar para dormir e a mente acelerar?</span>
                 <span className="text-muted-foreground group-open:rotate-180 transition-transform">+</span>
               </summary>
-              <div className="px-4 py-3 text-[14px] text-muted-foreground border-t border-border">
+              <div className="px-4 py-3 text-[16px] text-muted-foreground border-t border-border">
                 Use respiração 4-6, grounding 5-4-3-2-1, relaxamento muscular por 2 a 3 minutos. Evite celular e telas.
                 Veja técnicas rápidas em{" "}
                 <a
@@ -234,11 +235,11 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
             </details>
 
             <details className="group bg-card rounded-lg border border-border overflow-hidden">
-              <summary className="cursor-pointer px-4 py-4 text-[15px] font-medium text-foreground hover:bg-secondary/50 transition-colors list-none flex justify-between items-center">
+              <summary className="cursor-pointer px-4 py-4 text-[16px] font-medium text-foreground hover:bg-secondary/50 transition-colors list-none flex justify-between items-center">
                 <span>Cafeína e álcool atrapalham mesmo? Até que horas devo evitar?</span>
                 <span className="text-muted-foreground group-open:rotate-180 transition-transform">+</span>
               </summary>
-              <div className="px-4 py-3 text-[14px] text-muted-foreground border-t border-border">
+              <div className="px-4 py-3 text-[16px] text-muted-foreground border-t border-border">
                 Cafeína pode reduzir sono profundo por várias horas, prefira evitar após o meio da tarde. Álcool
                 fragmenta o sono, piora ronco e despertares. Combine com hábitos do{" "}
                 <a
@@ -254,11 +255,11 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
             </details>
 
             <details className="group bg-card rounded-lg border border-border overflow-hidden">
-              <summary className="cursor-pointer px-4 py-4 text-[15px] font-medium text-foreground hover:bg-secondary/50 transition-colors list-none flex justify-between items-center">
+              <summary className="cursor-pointer px-4 py-4 text-[16px] font-medium text-foreground hover:bg-secondary/50 transition-colors list-none flex justify-between items-center">
                 <span>Vitamina D3 e magnésio ajudam a dormir melhor?</span>
                 <span className="text-muted-foreground group-open:rotate-180 transition-transform">+</span>
               </summary>
-              <div className="px-4 py-3 text-[14px] text-muted-foreground border-t border-border">
+              <div className="px-4 py-3 text-[16px] text-muted-foreground border-t border-border">
                 Podem ajudar se houver deficiência ou consumo insuficiente. Suplementos não substituem rotina de sono e
                 manejo da ansiedade. Bases e cuidados em{" "}
                 <a
@@ -274,11 +275,11 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
             </details>
 
             <details className="group bg-card rounded-lg border border-border overflow-hidden">
-              <summary className="cursor-pointer px-4 py-4 text-[15px] font-medium text-foreground hover:bg-secondary/50 transition-colors list-none flex justify-between items-center">
+              <summary className="cursor-pointer px-4 py-4 text-[16px] font-medium text-foreground hover:bg-secondary/50 transition-colors list-none flex justify-between items-center">
                 <span>Quais sinais físicos indicam que minha ansiedade está afetando o corpo?</span>
                 <span className="text-muted-foreground group-open:rotate-180 transition-transform">+</span>
               </summary>
-              <div className="px-4 py-3 text-[14px] text-muted-foreground border-t border-border">
+              <div className="px-4 py-3 text-[16px] text-muted-foreground border-t border-border">
                 Taquicardia, aperto no peito, tremores, tensão muscular, suor frio, tontura e náusea são comuns. Entenda
                 gatilhos e o que fazer no momento da crise em{" "}
                 <a
@@ -294,11 +295,11 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
             </details>
 
             <details className="group bg-card rounded-lg border border-border overflow-hidden">
-              <summary className="cursor-pointer px-4 py-4 text-[15px] font-medium text-foreground hover:bg-secondary/50 transition-colors list-none flex justify-between items-center">
+              <summary className="cursor-pointer px-4 py-4 text-[16px] font-medium text-foreground hover:bg-secondary/50 transition-colors list-none flex justify-between items-center">
                 <span>Wearables ajudam a melhorar o sono ou só geram ansiedade com dados?</span>
                 <span className="text-muted-foreground group-open:rotate-180 transition-transform">+</span>
               </summary>
-              <div className="px-4 py-3 text-[14px] text-muted-foreground border-t border-border">
+              <div className="px-4 py-3 text-[16px] text-muted-foreground border-t border-border">
                 Úteis quando usados para tendências semanais, não para vigiar cada noite. Sincronize de manhã e desative
                 notificações noturnas. Boas práticas em{" "}
                 <a
@@ -314,11 +315,11 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
             </details>
 
             <details className="group bg-card rounded-lg border border-border overflow-hidden">
-              <summary className="cursor-pointer px-4 py-4 text-[15px] font-medium text-foreground hover:bg-secondary/50 transition-colors list-none flex justify-between items-center">
+              <summary className="cursor-pointer px-4 py-4 text-[16px] font-medium text-foreground hover:bg-secondary/50 transition-colors list-none flex justify-between items-center">
                 <span>Quando é hora de buscar ajuda profissional para insônia e ansiedade?</span>
                 <span className="text-muted-foreground group-open:rotate-180 transition-transform">+</span>
               </summary>
-              <div className="px-4 py-3 text-[14px] text-muted-foreground border-t border-border">
+              <div className="px-4 py-3 text-[16px] text-muted-foreground border-t border-border">
                 Se persistir por mais de 3 semanas, se houver ataques de pânico recorrentes ou prejuízo no dia a dia,
                 procure avaliação. Como viabilizar com seu convênio em{" "}
                 <a
@@ -343,11 +344,11 @@ const StartScreen = ({ onStart }: StartScreenProps) => {
             </details>
 
             <details className="group bg-card rounded-lg border border-border overflow-hidden">
-              <summary className="cursor-pointer px-4 py-4 text-[15px] font-medium text-foreground hover:bg-secondary/50 transition-colors list-none flex justify-between items-center">
+              <summary className="cursor-pointer px-4 py-4 text-[16px] font-medium text-foreground hover:bg-secondary/50 transition-colors list-none flex justify-between items-center">
                 <span>Existe um "atalho 80/20" para melhorar o sono nos próximos 7 dias?</span>
                 <span className="text-muted-foreground group-open:rotate-180 transition-transform">+</span>
               </summary>
-              <div className="px-4 py-3 text-[14px] text-muted-foreground border-t border-border">
+              <div className="px-4 py-3 text-[16px] text-muted-foreground border-t border-border">
                 Horário fixo para deitar e acordar, sem telas à noite, quarto escuro e fresco, respiração guiada por 10
                 minutos e caminhada diurna. Para iniciar hoje, use a{" "}
                 <a
